@@ -1,0 +1,48 @@
+.homepage {
+    h1 {
+        color: red;
+    }
+}
+
+
+
+// media queries
+
+
+
+@media (min-width: 576px) {
+    // here for small screens
+
+}
+
+@media (min-width: 768px) {
+
+    //here for tablets
+    .homepage {
+        h1 {
+            color: blue;
+        }
+
+    }
+
+    .aboutpage {
+        h1 {
+            color: red;
+        }
+    }
+
+
+
+}
+
+@media (min-width: 992px) {
+    // here for small computers
+
+}
+
+@media (min-width: 1200px) {
+    // medium computers
+
+}
+
+@media (min-width: 1400px) {}

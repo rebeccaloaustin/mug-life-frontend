@@ -1,10 +1,11 @@
 import React from 'react'
 import '../Home.scss';
+import Carousel from './Carousel';
 
 export default function Home() {
   return (
     <div className = "homepage">
-      <h1>This is the home</h1>
+   <Carousel></Carousel>
     </div>
   )
 }

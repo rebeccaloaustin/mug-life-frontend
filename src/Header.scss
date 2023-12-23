@@ -1,0 +1,24 @@
+
+#headerBrandName{
+    font-family: 'Poppins', sans-serif;
+    color:black
+    
+}
+#homeSlogan{
+    font-family: 'Poppins', sans-serif;
+    color:black;
+    font-size: 7vh;
+}
+
+#navBar{
+background-color: transparent;
+}
+.custom-text-style{
+    color: black;
+    font-family: 'Raleway', sans-serif;
+    transition: all .2s ease-in-out; 
+  }
+  .custom-text-style:hover{
+    transform: scale(1.1); 
+    color: black;
+  }

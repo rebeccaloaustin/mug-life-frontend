@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from "react-router-dom";
 import '../Home.scss';
-import Carousel from './Carousel';
+import Carousel from '../components/Carousel';
 
 export default function Home() {
   return (

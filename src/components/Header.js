@@ -46,7 +46,7 @@ export default function Header() {
         </ul>
       </div>
       <div className="mx-auto order-md-0">
-        <Link id="headerBrandName" to="/">
+        <Link id="headerBrandName" className="fw-800" to="/">
           Mug Life
         </Link>
       </div>

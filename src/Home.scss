@@ -1,7 +1,27 @@
 .homepage {
     h1 {
-        color: red;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 700;
+        color: black;
+        text-align: center;
+        margin-top: 30vh;
+        margin-bottom: 4vh;
     }
+    button{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
+    font-size: 2vh;
+    letter-spacing: .1em;
+    background-color: pink;
+    border: none;
+    margin-left: 44%;
+    padding: 20px 40px;
+    transition: all .2s ease-in-out; 
+}
+button:hover{
+    transform: scale(1.1); 
+}
+
 }
 
 
@@ -17,12 +37,6 @@
 
 @media (min-width: 768px) {
 
-    //here for tablets
-    .homepage {
-        h1 {
-            color: blue;
-        }
-
     }
 
     .aboutpage {
@@ -30,10 +44,6 @@
             color: red;
         }
     }
-
-
-
-}
 
 @media (min-width: 992px) {
     // here for small computers

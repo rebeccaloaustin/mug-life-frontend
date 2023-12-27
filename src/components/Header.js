@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import '../Header.scss';
 
 
-export default function Header() {
-  const [cartCount, setCartCount] = useState(0);
+export default function Header(props) {
+  const {cart} = props
   return (
     <div className="background-color">
     <nav className="navbar navbar-expand-lg navbar-light" id="navBar">
@@ -46,7 +46,7 @@ export default function Header() {
       <ul className="navbar-nav ml-auto">
         <li className="nav-item">
           <Link className="nav-link custom-text-style" to="/cart">
-            <i className="bi bi-cart"></i> {cartCount}
+            <i className="bi bi-cart"></i> {cart.length}
           </Link>
         </li>
       </ul>

@@ -1,4 +1,4 @@
-import React,{useState , useEffect} from "react";
+import React, {useState , useEffect} from "react";
 import { Link } from "react-router-dom";
 import "../Shop.scss";
 import productData from "../products.json";
@@ -12,17 +12,15 @@ export default function Shop(props) {
   const {get, loading} = useFetch(url)
 
   useEffect(() => {
-    get("/products")
-      .then((data) => {
-        setProducts(data);
-      })
-      .catch((error) => console.log("Could not load products", error));
+    fetch(`${url}/products`)
+	.then(response => response.json())
+	.then(data => setProducts(data))
+	.catch(err => console.error(err));
   }, []);
 
 
   return (
     <div className="shoppage container">
-        {loading && <Loader />}
       {products.length > 0 &&
         <div className="row row-cols-1 row-cols-md-3 g-4">
           {products.map((product, index) => (
@@ -44,7 +42,7 @@ export default function Shop(props) {
             </div>
           ))}
         </div>
-     }
+}
     </div>
   );
 }

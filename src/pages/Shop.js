@@ -14,7 +14,7 @@ export default function Shop(props) {
   useEffect(() => {
     fetch(`${url}/products`)
 	.then(response => response.json())
-	.then(data => setProducts(data))
+	.then(data => console.log(data))
 	.catch(err => console.error(err));
   }, []);
 

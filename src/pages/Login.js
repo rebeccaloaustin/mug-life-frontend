@@ -1,6 +1,6 @@
 // Import necessary libraries and styles
 import React, { useState } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function Login() {
   // State to manage the active tab (login or sign up)

@@ -46,7 +46,9 @@ export default function Header(props) {
       <ul className="navbar-nav ml-auto">
         <li className="nav-item">
           <Link className="nav-link custom-text-style" to="/cart">
-            <i className="bi bi-cart"></i> {cart.length}
+            <i className="bi bi-cart"></i> {cart.reduce((total, product)=>{
+              return total + product.quantity
+            },0)}
           </Link>
         </li>
       </ul>

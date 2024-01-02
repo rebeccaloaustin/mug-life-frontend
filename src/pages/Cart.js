@@ -1,9 +1,13 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 
 export default function Cart({ cart, onProductDelete, onQuantityChange }) {
   const calculateTotalPrice = () => {
     return cart.reduce((total, product) => total + product.price * product.quantity, 0);
   };
+  
+  useEffect(()=>{
+    console.log(cart)
+  },[])
 
   return (
     <div>

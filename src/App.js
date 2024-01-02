@@ -26,43 +26,38 @@ function App() {
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
 
-  function handleProductAdd(newProduct, quantity) {
-    const { _id, quantity: newQuantity } = newProduct;
-    const existingProductIndex = cart.findIndex((product) => product._id === _id);
+  function handleProductAdd(newProduct) {
+  
+    const existingProduct = cart.find(
+      (product) => product.id === newProduct.id
+    );
 
-    if (existingProductIndex !== -1) {
-      const updatedCart = cart.map((product, index) => {
-        if (index === existingProductIndex) {
-          return {
-            ...product,
-            quantity: product.quantity + newQuantity,
-          };
+    if (existingProduct) {
+      const updatedCart = cart.map((product)=>{
+        if(product=== newProduct.id){
+          return newProduct;
         }
-        return product;
-      });
-      setCart(updatedCart);
-    } else {
-      setCart([
-        ...cart,
-        {
-          ...newProduct,
-          quantity: quantity,
-        },
-      ]);
+        return products;
+      })
+      setCart(updatedCart)
+    }else{
+      setCart([...cart, newProduct])
+    }
+   
     }
 //makes sure the stock quantity cannot be less than 0
-    const updatedStock = products.map((product) => {
-      if (product._id === _id) {
-        return {
-          ...product,
-          stock: Math.max(0, product.stock - newQuantity),
-        };
-      }
-      return product;
-    });
+  //   const updatedStock = products.map((product) => {
+  //     if (product._id === _id) {
+  //       return {
+  //         ...product,
+  //         stock: Math.max(0, product.stock - newQuantity),
+  //       };
+  //     }
+  //     return product;
+  //   });
 
-    setProducts(updatedStock);
-  }
+  //   setProducts(updatedStock);
+  // }
 
  function handleProductDelete(id, quantityToRemove) {
   const updatedCart = cart.map((product) => {
@@ -126,7 +121,7 @@ function App() {
       </Routes>
       <Footer />
     </div>
-  );
-}
+  )}
+
 
 export default App;

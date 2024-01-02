@@ -18,8 +18,11 @@ export default function Product(props) {
           setProduct(data);
         }
       })
-      .catch((err) => console.error(err));
+      .catch((err) => console.error(err))
+
+      ;
   }, []);
+
 
   const handleQuantityChange = (newQuantity) => {
     // Ensure newQuantity is a valid number and not NaN
@@ -29,7 +32,8 @@ export default function Product(props) {
   };
 
   const handleAddToCart = () => {
-    onProductAdd({ ...product, quantity });
+    onProductAdd({...product, quantity} );
+ 
     setQuantity(1); // Reset quantity to 1 after adding to the cart
   };
 

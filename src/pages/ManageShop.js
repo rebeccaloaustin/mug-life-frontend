@@ -34,7 +34,6 @@ export default function ManageShop() {
         const updatedProducts = products.filter(product => product._id !== productId);
         setProducts(updatedProducts);
       } else {
-        // Handle error, maybe show an error message
         console.error("Error deleting product:", response.statusText);
       }
     } catch (error) {

@@ -111,7 +111,7 @@ function App() {
         <Route path="/shop" element={<Shop />} />
         <Route
           path="/cart"
-          element={<Cart cart={cart} onProductDelete={handleProductDelete} onQuantityChange={handleQuantityChange} />}
+          element={<Cart cart={cart} onProductDelete={handleProductDelete} onProductAdd={handleProductAdd} onQuantityChange={handleQuantityChange} />}
         />
         <Route path="/login" element={<Login />} />
         <Route

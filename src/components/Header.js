@@ -32,6 +32,16 @@ export default function Header(props) {
             </Link>
           </li>
           <li className="nav-item">
+            <Link className="nav-link custom-text-style" to="/product/new">
+              Add Product
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link className="nav-link custom-text-style" to="/shop/manage">
+              Manage Shop
+            </Link>
+          </li>
+          <li className="nav-item">
             <Link className="nav-link custom-text-style" to="/login">
               Login
             </Link>

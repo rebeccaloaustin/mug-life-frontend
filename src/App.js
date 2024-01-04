@@ -13,7 +13,6 @@ import NewProduct from "./pages/NewProduct";
 import ManageShop from "./pages/ManageShop";
 import EditProduct from "./pages/EditProduct";
 
-
 function App() {
   const [cart, setCart] = useState(() => {
     const cartProducts = localStorage.getItem("cart");
@@ -24,65 +23,50 @@ function App() {
     }
   });
 
-  const [products, setProducts] = useState([]); 
+  const [products, setProducts] = useState([]);
 
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
 
   function handleProductAdd(newProduct) {
-  
-    const existingProduct = cart.find(
-      (product) => product.id === newProduct.id
-    );
+    console.log(newProduct)
+    const existingProduct = cart.find((product) => product._id === newProduct._id);
 
     if (existingProduct) {
-      const updatedCart = cart.map((product)=>{
-        if(product=== newProduct.id){
+      const updatedCart = cart.map((product) => {
+        if (product._id === newProduct._id) {
           return newProduct;
         }
         return products;
-      })
-      setCart(updatedCart)
-    }else{
-      setCart([...cart, newProduct])
+      });
+      setCart(updatedCart);
+    } else {
+      setCart([...cart, newProduct]);
     }
-   
-    }
-//makes sure the stock quantity cannot be less than 0
-  //   const updatedStock = products.map((product) => {
-  //     if (product._id === _id) {
-  //       return {
-  //         ...product,
-  //         stock: Math.max(0, product.stock - newQuantity),
-  //       };
-  //     }
-  //     return product;
-  //   });
+  }
 
-  //   setProducts(updatedStock);
-  // }
 
- function handleProductDelete(id, quantityToRemove) {
-  const updatedCart = cart.map((product) => {
-    if (product._id === id) {
-      const remainingQuantity = Math.max(0, product.quantity - quantityToRemove);
+  function handleProductDelete(id, quantityToRemove) {
+    const updatedCart = cart.map((product) => {
+      if (product._id === id) {
+        const remainingQuantity = Math.max(0, product.quantity - quantityToRemove);
 
-      if (remainingQuantity === 0) {
-        // If the remaining quantity is zero, do not include the product in the updated cart
-        return null;
+        if (remainingQuantity === 0) {
+          // If the remaining quantity is zero, do not include the product in the updated cart
+          return null;
+        }
+
+        return { ...product, quantity: remainingQuantity };
       }
 
-      return { ...product, quantity: remainingQuantity };
-    }
+      return product;
+    });
+    //removes any product entries from the cart that were flagged as null
+    const filteredCart = updatedCart.filter((product) => product !== null);
 
-    return product;
-  });
-//removes any product entries from the cart that were flagged as null
-  const filteredCart = updatedCart.filter((product) => product !== null);
-
-  setCart(filteredCart);
-}
+    setCart(filteredCart);
+  }
 
   function handleQuantityChange(id, newQuantity) {
     const productIndex = cart.findIndex((product) => product._id === id);
@@ -113,24 +97,16 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/shop" element={<Shop />} />
-        <Route
-          path="/cart"
-          element={<Cart cart={cart} onProductDelete={handleProductDelete} onProductAdd={handleProductAdd} onQuantityChange={handleQuantityChange} />}
-        />
-       
+        <Route path="/cart" element={<Cart cart={cart} onProductDelete={handleProductDelete} onProductAdd={handleProductAdd} onQuantityChange={handleQuantityChange} />} />
         <Route path="/login" element={<Login />} />
-         <Route path="/product/edit/:id" element={<EditProduct />} />
-         <Route
-          path="/product/:id"
-          element={<Product cart={cart} onProductAdd={handleProductAdd} onProductDelete={handleProductDelete} />}
-        />
-        
-         <Route path="/product/new" element={<NewProduct />} />
-         <Route path="/shop/manage" element={<ManageShop />} />
+        <Route path="/product/edit/:id" element={<EditProduct />} />
+        <Route path="/product/new" element={<NewProduct />} />
+        <Route path="/product/:id" element={<Product cart={cart} onProductAdd={handleProductAdd} onProductDelete={handleProductDelete} />} />
+        <Route path="/shop/manage" element={<ManageShop />} />
       </Routes>
       <Footer />
     </div>
-  )}
-
+  );
+}
 
 export default App;

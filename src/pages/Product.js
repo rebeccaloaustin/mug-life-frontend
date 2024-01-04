@@ -8,7 +8,7 @@ export default function Product(props) {
   const [quantity, setQuantity] = useState(1);
   const url = process.env.REACT_APP_URL;
   const { get, loading } = useFetch(url);
-  const [product, setProduct] = useState({});
+  const [product, setProduct] = useState(null);
   const { cart, onProductAdd } = props;
 
 
@@ -35,7 +35,6 @@ export default function Product(props) {
 
   const handleAddToCart = () => {
     onProductAdd({...product, quantity} );
- 
     setQuantity(1); // Reset quantity to 1 after adding to the cart
   };
 

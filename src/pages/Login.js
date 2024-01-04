@@ -38,7 +38,7 @@ export default function Login() {
         .catch((error) => {
           console.error(error);
         });
-      console.log({ email: logInEmail, password: logInPassword });
+  
     } else {
       const fetchURL = `${url}/users/register`;
       const options = {

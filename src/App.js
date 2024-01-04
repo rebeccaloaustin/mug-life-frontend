@@ -117,12 +117,14 @@ function App() {
           path="/cart"
           element={<Cart cart={cart} onProductDelete={handleProductDelete} onProductAdd={handleProductAdd} onQuantityChange={handleQuantityChange} />}
         />
+       
         <Route path="/login" element={<Login />} />
-        <Route
+         <Route path="/product/edit/:id" element={<EditProduct />} />
+         <Route
           path="/product/:id"
           element={<Product cart={cart} onProductAdd={handleProductAdd} onProductDelete={handleProductDelete} />}
         />
-         <Route path="/product/:id/edit" element={<EditProduct />} />
+        
          <Route path="/product/new" element={<NewProduct />} />
          <Route path="/shop/manage" element={<ManageShop />} />
       </Routes>

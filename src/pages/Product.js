@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import useFetch from '../useFetch';
+import "../Product.scss";
 
 export default function Product(props) {
   const { id } = useParams();
@@ -16,6 +17,7 @@ export default function Product(props) {
       .then((data) => {
         if (data) {
           setProduct(data);
+          console.log(data);
         }
       })
       .catch((err) => console.error(err))
@@ -46,14 +48,18 @@ export default function Product(props) {
   }
 
   return (
-    <div>
-      <Link to="/shop">
+    <div className="product-page">
+       <Link to="/shop">
         <i className="bi bi-arrow-left"> back to shop</i>
       </Link>
-      <h2>{product.name}</h2>
+      <div className="product-image">
       <img src={product.image} alt={product.name} />
+      </div> 
+     
+      <div className="product-details"></div>
+      <h2>{product.name}</h2>
       <p>{product.description}</p>
-      <p>Price: ${product.price}</p>
+      <p className="price">Price: ${product.price}</p>
       <p>Stock: {product.stock}</p>
 
       <div>
@@ -70,7 +76,7 @@ export default function Product(props) {
           />
           <button onClick={() => handleQuantityChange(quantity + 1)}>+</button>
         </span>
-        <button onClick={handleAddToCart}>Add to Cart</button>
+        <button onClick={handleAddToCart} className="add-to-cart">Add to Cart</button>
       </div>
     </div>
   );

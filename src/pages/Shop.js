@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import "../Shop.scss";
 import useFetch from "../useFetch";
 import Loader from "../Loader";
+import "../Shop.scss";
 
 export default function Shop(props) {
   const { cart, onProductAdd, onProductDelete } = props;

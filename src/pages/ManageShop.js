@@ -30,7 +30,6 @@ export default function ManageShop() {
       });
 
       if (response.ok) {
-        // Refresh the product list after deletion
         const updatedProducts = products.filter(product => product._id !== productId);
         setProducts(updatedProducts);
       } else {
@@ -56,7 +55,7 @@ export default function ManageShop() {
                   <div className="card-body">
                     <h5 className="card-title">{product.name}</h5>
                     <p className="card-text">{product.description}</p>
-                    <Link to={`/product/${product._id}/edit`}>
+                    <Link to={`/product/edit/${product._id}`}>
                     <button className = "btn btn-primary"> Edit Product</button>
                     </Link>
                     <button className = "btn btn-danger" onClick={() => handleDeleteProduct(product._id)}> Delete Product</button>

@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import {useNavigate } from "react-router-dom";
 import "../NewProduct.scss";
 
 export default function NewProduct() {
+  const navigate = useNavigate(); 
   const [productName, setProductName] = useState("");
   const [productDescription, setProductDescription] = useState("");
   const [productPrice, setProductPrice] = useState("");
@@ -24,6 +26,7 @@ export default function NewProduct() {
 
       if (response.ok) {
         console.log("Product added successfully");
+        navigate("/shop");
       } else {
         console.error("Error adding product:", response.statusText);
       }

@@ -2,16 +2,9 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import '../Header.scss';
 
-export default function Header() {
-  const [cartCount, setCartCount] = useState(0);
-  const addToCart = () => {
-    setCartCount(cartCount + 1);
-  };
-  const removeFromCart = () => {
-    if (cartCount > 0) {
-      setCartCount(cartCount - 1);
-    }
-  };
+
+export default function Header(props) {
+  const {cart} = props
   return (
     <div className="background-color">
     <nav className="navbar navbar-expand-lg navbar-light" id="navBar">
@@ -39,7 +32,17 @@ export default function Header() {
             </Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link custom-text-style" to="#">
+            <Link className="nav-link custom-text-style" to="/product/new">
+              Add Product
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link className="nav-link custom-text-style" to="/shop/manage">
+              Manage Shop
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link className="nav-link custom-text-style" to="/login">
               Login
             </Link>
           </li>
@@ -52,8 +55,10 @@ export default function Header() {
       </div>
       <ul className="navbar-nav ml-auto">
         <li className="nav-item">
-          <Link className="nav-link custom-text-style" to="#">
-            <i className="bi bi-cart"></i> {cartCount}
+          <Link className="nav-link custom-text-style" to="/cart">
+            <i className="bi bi-cart"></i> {cart.reduce((total, product)=>{
+              return total + product.quantity
+            },0)}
           </Link>
         </li>
       </ul>

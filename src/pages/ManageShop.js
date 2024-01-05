@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../Shop.scss";
 import useFetch from "../useFetch";
 import Loader from "../Loader";
 
+
 export default function ManageShop() {
+  const navigate = useNavigate();
   const [products, setProducts] = useState([]);
   const url = process.env.REACT_APP_URL;
   const { get, loading } = useFetch(url);
@@ -20,6 +22,7 @@ export default function ManageShop() {
       .catch((err) => console.error(err))
       .finally(() => {
         console.log(products);
+        navigate('/shop/manage');
       });
   }, []);
 

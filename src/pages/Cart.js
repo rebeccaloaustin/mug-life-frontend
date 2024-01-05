@@ -1,14 +1,19 @@
 import React, {useEffect} from 'react';
+import { useNavigate } from "react-router-dom";
 import "../Cart.scss";
 
 export default function Cart({ cart, onProductDelete, onQuantityChange }) {
+  const navigate = useNavigate();
   const calculateTotalPrice = () => {
     return cart.reduce((total, product) => total + product.price * product.quantity, 0);
   };
-  
+  const handleCheckout = () => {
+    navigate('/checkout');
+  };
   useEffect(()=>{
     console.log(cart)
   },[])
+  
 
   return (
     <div className='cart container'>
@@ -35,6 +40,9 @@ export default function Cart({ cart, onProductDelete, onQuantityChange }) {
         </div>
       ))}
       <p>Subtotal: ${calculateTotalPrice()}</p>
+      <button onClick={handleCheckout}>
+        Checkout
+      </button>
     </div>
   );
 }

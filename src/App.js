@@ -12,6 +12,7 @@ import Login from "./pages/Login";
 import NewProduct from "./pages/NewProduct";
 import ManageShop from "./pages/ManageShop";
 import EditProduct from "./pages/EditProduct";
+import Checkout from "./pages/Checkout";
 
 function App() {
   const [cart, setCart] = useState(() => {
@@ -103,6 +104,7 @@ function App() {
         <Route path="/product/new" element={<NewProduct />} />
         <Route path="/product/:id" element={<Product cart={cart} onProductAdd={handleProductAdd} onProductDelete={handleProductDelete} />} />
         <Route path="/shop/manage" element={<ManageShop />} />
+        <Route path="/checkout" element={<Checkout />} />
       </Routes>
       <Footer />
     </div>

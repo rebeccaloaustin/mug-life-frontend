@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../NewProduct.scss";
+import axios from "axios";
 
 export default function NewProduct() {
   const navigate = useNavigate();
@@ -8,17 +9,10 @@ export default function NewProduct() {
   const [productDescription, setProductDescription] = useState("");
   const [productPrice, setProductPrice] = useState("");
   const [productPriceID, setProductPriceID] = useState("");
-  const [productImage, setProductImage] = useState(null);
+  const [productImage, setProductImage] = useState("");
   const url = process.env.REACT_APP_URL;
   const handleSubmit =(e) => {
     e.preventDefault();
-
-    // const formData = new FormData();
-    // formData.append("name", productName);
-    // formData.append("description", productDescription);
-    // formData.append("price", productPrice);
-    // formData.append("image", productImage);
-
     const fetchURL = `${url}/products`;
     const options = {
       method: "POST",
@@ -26,15 +20,14 @@ export default function NewProduct() {
         Accept: "application/json",
         "Content-Type": "application/json;charset=UTF-8",
       },
-      body: JSON.stringify({ image: productImage, name: productName, description: productDescription, price: parseFloat(productPrice), price_id: productPriceID }),
+      body: JSON.stringify({ name: productName, image:productImage, description : productDescription, price_id: productPriceID, price: parseFloat(productPrice) }),
     };
     fetch(fetchURL, options)
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        console.log(data);
-      })
+    .then((response) => {
+      return response.json()
+    }).then(data=>{
+      console.log(data)
+    })
       .catch((error) => {
         console.error(error);
       });
@@ -76,9 +69,9 @@ export default function NewProduct() {
 
         <div className="mb-3">
           <label htmlFor="productImage" className="form-label">
-            Choose an image for your product:
+            Add an Image URL
           </label>
-          <input type="file" id="productImage" name="productImage" accept="image/png, image/jpeg" onChange={(e) => setProductImage(e.target.files[0])} />
+          <input type="text" className="form-control" id="productImage" name="productImage" placeholder="Enter Image URL"  value={productImage} onChange={(e) =>  setProductImage(e.target.value)} />
         </div>
         <button type="submit" className="btn btn-primary">
           Submit

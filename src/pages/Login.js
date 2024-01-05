@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
-export default function Login() {
+export default function Login(props) {
   // State to manage the active tab (login or sign up)
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState("login");
@@ -24,6 +24,7 @@ export default function Login() {
     sendNewUser: true,
   });
 
+  const {handleTokenAdd} = props;
   const { name, email, password, passwordLogin, emailLogin, error, sendNewUser } = values;
 
   const checkSignUp = () => {
@@ -48,7 +49,7 @@ export default function Login() {
       submit = false;
     }
     if (!submit) {
-      setValues({ ...values, ["sendNewUser"]: false });
+      setValues({ ...values, sendNewUser: false });
     }
   };
   
@@ -91,11 +92,14 @@ export default function Login() {
           return response.json();
         })
         .then((data) => {
-     
+          console.log(data)
           if (data.error) {
             let message = data.error
             setValues({ ...values, error: message})
           } else {
+            let string = data.token.split(" ")[1]
+            handleTokenAdd(string)
+            console.log(string)
             navigate("/");
           }
         })

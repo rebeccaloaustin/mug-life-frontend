@@ -15,6 +15,7 @@ import EditProduct from "./pages/EditProduct";
 import Checkout from "./pages/Checkout";
 
 function App() {
+  // this is for the state
   const [cart, setCart] = useState(() => {
     const cartProducts = localStorage.getItem("cart");
     if (cartProducts) {
@@ -23,12 +24,27 @@ function App() {
       return [];
     }
   });
-
   const [products, setProducts] = useState([]);
+  const [token, setToken] = useState(()=>{
+    const jwtToken = localStorage.getItem("token")
+    if(jwtToken){
+      return jwtToken;
+    }else {
+      return null
+    }
+  })
+
+
 
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
+
+
+  function handleTokenAdd(token){
+    localStorage.setItem("token", token)
+    setToken(token)
+  }
 
   function handleProductAdd(newProduct) {
     console.log(newProduct)
@@ -99,7 +115,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/shop" element={<Shop />} />
         <Route path="/cart" element={<Cart cart={cart} onProductDelete={handleProductDelete} onProductAdd={handleProductAdd} onQuantityChange={handleQuantityChange} />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/login" element={<Login  token={token} handleTokenAdd = {handleTokenAdd} />} />
         <Route path="/product/edit/:id" element={<EditProduct />} />
         <Route path="/product/new" element={<NewProduct />} />
         <Route path="/product/:id" element={<Product cart={cart} onProductAdd={handleProductAdd} onProductDelete={handleProductDelete} />} />

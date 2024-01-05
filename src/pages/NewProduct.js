@@ -20,7 +20,7 @@ export default function NewProduct() {
         Accept: "application/json",
         "Content-Type": "application/json;charset=UTF-8",
       },
-      body: JSON.stringify({ name: productName, image:productImage, description : productDescription, price_id: productPriceID, setPrice: parseFloat(productPrice) }),
+      body: JSON.stringify({ name: productName, image:productImage, description : productDescription, price_id: productPriceID, price: parseFloat(productPrice) }),
     };
     fetch(fetchURL, options)
     .then((response) => {

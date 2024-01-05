@@ -11,10 +11,24 @@ export default function Shop(props) {
   const { get, loading } = useFetch(url);
 
   useEffect(() => {
+<<<<<<< HEAD
     fetch(`${url}/products`)
 	.then(response => response.json())
-	.then(data => setProducts(data))
+	.then(data => console.log(data))
 	.catch(err => console.error(err));
+=======
+    get("/products")
+      .then((data) => {
+        if (data) {
+          console.log(data);
+          setProducts(data);
+        }
+      })
+      .catch((err) => console.error(err))
+      .finally(() => {
+        console.log(products);
+      });
+>>>>>>> 4b83d84908af69455cc3bf2e049df6de44e74277
   }, []);
 
   return (

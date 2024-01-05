@@ -19,6 +19,7 @@ export default function Login() {
 
   const submitLogin = (e) => {
     e.preventDefault();
+    console.log(signUpEmail)
     if (activeTab === "login") {
       const fetchURL = `${url}/auth/signin`;
       const options = {
@@ -38,8 +39,20 @@ export default function Login() {
         .catch((error) => {
           console.error(error);
         });
-      console.log({ email: logInEmail, password: logInPassword });
+  
     } else {
+      const signUpEmailForm = document.getElementById("signupEmail") 
+      let regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
+      
+      if(!signUpEmail.match(regex)){
+        signUpEmailForm.classList.add("warning")
+      }else if(userName.trim().length<1) {
+        const signUpName = document.getElementById("signupName") 
+        signUpName.classList.add("warning")
+      }else{
+
+      // this is my sign up function
       const fetchURL = `${url}/users/register`;
       const options = {
         method: "POST",
@@ -57,7 +70,8 @@ export default function Login() {
         })
         .catch((error) => {
           console.error(error);
-        });
+        })
+      }
     }
   };
 
@@ -86,13 +100,14 @@ export default function Login() {
                     <label htmlFor="loginEmail" className="form-label">
                       Email address
                     </label>
-                    <input type="email" value={logInEmail} onChange={(e) => setLogInEmail(e.target.value)} className="form-control" id="loginEmail" />
+                    <input type="text" value={logInEmail} onChange={(e) => setLogInEmail(e.target.value)} className="form-control " id="loginEmail" />
                   </div>
                   <div className="mb-3">
                     <label htmlFor="loginPassword" className="form-label">
                       Password
                     </label>
                     <input type="password" value={logInPassword} onChange={(e) => setLogInPassword(e.target.value)} className="form-control" id="loginPassword" />
+
                   </div>
                   <button type="submit" className="btn btn-primary">
                     Login
@@ -109,12 +124,13 @@ export default function Login() {
                       Name
                     </label>
                     <input type="text" value={userName} onChange={(e) => setUserName(e.target.value)} className="form-control" id="signupName" />
+                  
                   </div>
                   <div className="mb-3">
                     <label htmlFor="signupEmail" className="form-label">
                       Email address
                     </label>
-                    <input type="email" value={signUpEmail} onChange={(e) => setSignUpEmail(e.target.value)} className="form-control" id="signupEmail" />
+                    <input type="text" value={signUpEmail} onChange={(e) => setSignUpEmail(e.target.value)} className="form-control " id="signupEmail" />
                   </div>
                   <div className="mb-3">
                     <label htmlFor="signupPassword" className="form-label">

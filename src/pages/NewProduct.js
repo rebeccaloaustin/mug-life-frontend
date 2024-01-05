@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../NewProduct.scss";
-import axios from "axios";
+
 
 export default function NewProduct() {
   const navigate = useNavigate();
@@ -27,6 +27,7 @@ export default function NewProduct() {
       return response.json()
     }).then(data=>{
       console.log(data)
+      navigate('/shop');
     })
       .catch((error) => {
         console.error(error);

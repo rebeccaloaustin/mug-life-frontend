@@ -46,7 +46,7 @@ export default function Product() {
 
       if (response.ok) {
         console.log("Product updated successfully");
-        navigate("/shop");
+        navigate("/shop/manage");
       } else {
         console.error("Error updating product:", response.statusText);
       }
@@ -105,13 +105,16 @@ export default function Product() {
 
         <div className="mb-3">
           <label htmlFor="productImage" className="form-label">
-            Choose an image for your product:
+            URL for your image:
           </label>
           <input
-            type="file"
+            type="text"
+            className="form-control"
             id="productImage"
-            name="product.image"
-            accept="image/png, image/jpeg"
+            name="image"
+            placeholder="Enter product image"
+            value={product.image}
+            onChange={handleInputChange}
           />
         </div>
         <button type="submit" className="btn btn-primary">

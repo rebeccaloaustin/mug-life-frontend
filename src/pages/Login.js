@@ -4,24 +4,78 @@ import { useNavigate } from "react-router-dom";
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function Login() {
-  const navigate = useNavigate();
   // State to manage the active tab (login or sign up)
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState("login");
-  const [logInEmail, setLogInEmail] = useState("");
-  const [signUpEmail, setSignUpEmail] = useState("");
-  const [logInPassword, setLogInPassword] = useState("");
-  const [signUpPassword, setSignUpPassword] = useState("");
-  const [userName, setUserName] = useState("");
+  const signUpEmailForm = document.getElementById("signupEmail");
+  const invalidEmail = document.getElementById("invalidEmail");
+  const signUpName = document.getElementById("signupName");
+  const invalidUserName = document.getElementById("invalidUserName");
+  const signupPassword = document.getElementById("signupPassword");
+  const invalidPassword = document.getElementById("invalidPassword");
   const url = process.env.REACT_APP_URL;
+  const [values, setValues] = useState({
+    name: "",
+    email: "",
+    password: "",
+    passwordLogin: "",
+    emailLogin: "",
+    error: "",
+    sendNewUser: true,
+  });
+
+  const { name, email, password, passwordLogin, emailLogin, error, sendNewUser } = values;
+
+  const checkSignUp = () => {
+
+    let regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    let submit = true;
+    if (!email.match(regex)) {
+      signUpEmailForm.classList.add("warning");
+      invalidEmail.classList.remove("hidden");
+      submit = false;
+    }
+    if (name.trim().length < 1) {
+
+      signUpName.classList.add("warning");
+      invalidUserName.classList.remove("hidden");
+      submit = false;
+    }
+    if (password.trim().length < 1) {
+   
+      signupPassword.classList.add("warning");
+      invalidPassword.classList.remove("hidden");
+      submit = false;
+    }
+    if (!submit) {
+      setValues({ ...values, ["sendNewUser"]: false });
+    }
+  };
+  
+  const showError = () => (
+    <div className="alert alert-danger" style={{ display: error ? "" : "none" }}>
+      {error}
+    </div>
+  );
 
   // Function to switch between login and sign up tabs
   const switchTab = (tab) => {
     setActiveTab(tab);
   };
 
+  const handleChange = (name) => (event) => {
+    const value = event.target.value;
+    signUpEmailForm?.classList.remove("warning");
+    invalidEmail?.classList.add("hidden");
+    signUpName?.classList.remove("warning");
+    invalidUserName?.classList.add("hidden");
+    signupPassword?.classList.remove("warning");
+    invalidPassword?.classList.add("hidden");
+    setValues({ ...values, [name]: value, error: "" });
+  };
+
   const submitLogin = (e) => {
     e.preventDefault();
-    console.log(signUpEmail)
     if (activeTab === "login") {
       const fetchURL = `${url}/auth/signin`;
       const options = {
@@ -30,68 +84,58 @@ export default function Login() {
           Accept: "application/json",
           "Content-Type": "application/json;charset=UTF-8",
         },
-        body: JSON.stringify({ email: logInEmail, password: logInPassword }),
-      };
-      fetch(fetchURL, options)
-      .then((response) => {
-        return response.json()
-      }).then(data=>{
-        console.log(data)
-        navigate('/');
-      })
-        .catch((error) => {
-          console.error(error);
-        });
-  
-    } else {
-      const signUpEmailForm = document.getElementById("signupEmail") 
-      let regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-
-      if(!signUpEmail.match(regex)){
-        const invalidEmail = document.getElementById("invalidEmail") 
-        signUpEmailForm.classList.add("warning")
-        invalidEmail.classList.remove("hidden")
-      }if(userName.trim().length<1) {
-        const signUpName = document.getElementById("signupName") 
-        const invalidUserName = document.getElementById("invalidUserName") 
-        signUpName.classList.add("warning")
-        invalidUserName.classList.remove("hidden")
-      }if(signUpPassword.trim().length<1) {
-        const signupPassword = document.getElementById("signupPassword") 
-        const invalidPassword = document.getElementById("invalidPassword") 
-        signupPassword.classList.add("warning")
-        invalidPassword.classList.remove("hidden")
-
-      }else{
-
-      // this is my sign up function
-      const fetchURL = `${url}/users/register`;
-      const options = {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json;charset=UTF-8",
-        },
-        body: JSON.stringify({ email: signUpEmail, password: signUpPassword, name: userName }),
+        body: JSON.stringify({ email: values.emailLogin, password: values.passwordLogin }),
       };
       fetch(fetchURL, options)
         .then((response) => {
-          return response.json()
-        }).then(data=>{
-          console.log(data)
-          navigate('/');
+          return response.json();
+        })
+        .then((data) => {
+     
+          if (data.error) {
+            let message = data.error
+            setValues({ ...values, error: message})
+          } else {
+            navigate("/");
+          }
         })
         .catch((error) => {
           console.error(error);
-        })
+        });
+    } else {
+
+      checkSignUp()
+      if (!sendNewUser) {
+
+        const fetchURL = `${url}/users/register`;
+        const options = {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json;charset=UTF-8",
+          },
+          body: JSON.stringify({ email: values.email, password: values.password, name: values.name }),
+        };
+        fetch(fetchURL, options)
+          .then((response) => {
+            return response.json();
+          })
+          .then((data) => {
+            console.log(data);
+          })
+          .catch((error) => {
+            console.error(error);
+          });
       }
     }
   };
 
   return (
     <div className="container mt-5">
+         {showError()}
       <div className="row justify-content-center">
-        <div className="col-md-6">
+  
+        <div className="col-12">
           <ul className="nav nav-tabs">
             <li className="nav-item">
               <a className={`nav-link ${activeTab === "login" ? "active" : ""}`} onClick={() => switchTab("login")} href="#">
@@ -110,18 +154,18 @@ export default function Login() {
                 {/* Login form */}
                 <form onSubmit={(e) => submitLogin(e)}>
                   <div className="mb-3">
-                    <label htmlFor="loginEmail" className="form-label" id="">
+                    <label htmlFor="loginEmail" className="form-label">
                       Email address
                     </label>
-                    <input type="text" value={logInEmail} onChange={(e) => setLogInEmail(e.target.value)} className="form-control " id="loginEmail" />
+                    <input type="text" value={emailLogin} onChange={handleChange("emailLogin")} className="form-control " id="loginEmail" />
                   </div>
                   <div className="mb-3">
                     <label htmlFor="loginPassword" className="form-label">
                       Password
                     </label>
-                    <input type="password" value={logInPassword} onChange={(e) => setLogInPassword(e.target.value)} className="form-control" id="loginPassword" />
+                    <input type="password" value={passwordLogin} onChange={handleChange("passwordLogin")} className="form-control" id="loginPassword" />
                   </div>
-                  <div className="hidden" id="invalidLogin">The username or password you entered is incorrect</div>
+             
                   <button type="submit" className="btn btn-primary">
                     Login
                   </button>
@@ -136,22 +180,28 @@ export default function Login() {
                     <label htmlFor="signupName" className="form-label">
                       Name
                     </label>
-                    <input type="text" value={userName} onChange={(e) => setUserName(e.target.value)} className="form-control" id="signupName" />
-                    <div className="hidden" id="invalidUserName">Please enter a valid name</div>
+                    <input type="text" value={name} onChange={handleChange("name")} className="form-control" id="signupName" />
+                    <div className="hidden" id="invalidUserName">
+                      Please enter a valid name
+                    </div>
                   </div>
                   <div className="mb-3">
                     <label htmlFor="signupEmail" className="form-label">
                       Email address
                     </label>
-                    <input type="text" value={signUpEmail} onChange={(e) => setSignUpEmail(e.target.value)} className="form-control " id="signupEmail" />
-                 <div className="hidden" id="invalidEmail">Please enter a valid email adress</div>
+                    <input type="text" value={email} onChange={handleChange("email")} className="form-control " id="signupEmail" />
+                    <div className="hidden" id="invalidEmail">
+                      Please enter a valid email adress
+                    </div>
                   </div>
                   <div className="mb-3">
                     <label htmlFor="signupPassword" className="form-label">
                       Password
                     </label>
-                    <input type="password" value={signUpPassword} onChange={(e) => setSignUpPassword(e.target.value)} className="form-control" id="signupPassword" />
-                    <div className="hidden" id="invalidPassword">Please enter a valid Password</div>
+                    <input type="password" value={password} onChange={handleChange("password")} className="form-control" id="signupPassword" />
+                    <div className="hidden" id="invalidPassword">
+                      Please enter a valid Password
+                    </div>
                   </div>
                   <button type="submit" className="btn btn-primary">
                     Sign Up

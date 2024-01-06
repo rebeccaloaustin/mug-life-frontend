@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "../NewProduct.scss";
 
 
-export default function NewProduct() {
+export default function NewProduct(props) {
   const navigate = useNavigate();
   const [productName, setProductName] = useState("");
   const [productDescription, setProductDescription] = useState("");
@@ -13,6 +13,7 @@ export default function NewProduct() {
   const [successMessage, setSuccessMessage] = useState("");
   const url = process.env.REACT_APP_URL;
 
+  const {user} = props
     
   const showSuccess = () => (
     <div className="alert alert-success" style={{ display: successMessage? "" : "none" }}>
@@ -43,6 +44,7 @@ export default function NewProduct() {
         console.error(error);
       });
   };
+  
 
   return (
     <div className="newproduct container">

@@ -48,7 +48,8 @@ function App() {
 
 
   function handleTokenAdd(tokn){
-    setUser(tokn)
+    var decoded = jwtDecode(tokn);
+    setUser(decoded)
     localStorage.setItem("token", tokn)
     setToken(tokn)
   }
@@ -123,15 +124,15 @@ function App() {
     <div className="App">
       <Header cart={cart} user={user} logOut={logOut} />
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/shop" element={<Shop />} />
-        <Route path="/cart" element={<Cart cart={cart} onProductDelete={handleProductDelete} onProductAdd={handleProductAdd} onQuantityChange={handleQuantityChange} />} />
-        <Route path="/login" element={<Login  token={token} handleTokenAdd = {handleTokenAdd} />} />
-        <Route path="/product/edit/:id" element={<EditProduct />} />
-        <Route path="/product/new" element={<NewProduct />} />
-        <Route path="/product/:id" element={<Product cart={cart} onProductAdd={handleProductAdd} onProductDelete={handleProductDelete} />} />
-        <Route path="/shop/manage" element={<ManageShop />} />
+        <Route path="/" user={user}  element={<Home />} />
+        <Route path="/about" user={user}  element={<About />} />
+        <Route path="/shop" user={user}  element={<Shop />} />
+        <Route path="/cart" user={user}  element={<Cart cart={cart} onProductDelete={handleProductDelete} onProductAdd={handleProductAdd} onQuantityChange={handleQuantityChange} />} />
+        <Route path="/login" user={user}  element={<Login  token={token} handleTokenAdd = {handleTokenAdd} />} />
+        <Route path="/product/edit/:id" user={user}  element={<EditProduct />} />
+        <Route path="/product/new" user={user}  element={<NewProduct />} />
+        <Route path="/product/:id" user={user}  element={<Product cart={cart} onProductAdd={handleProductAdd} onProductDelete={handleProductDelete} />} />
+        <Route path="/shop/manage" user={user}  element={<ManageShop />} />
       </Routes>
       <Footer />
     </div>

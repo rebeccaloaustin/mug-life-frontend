@@ -72,7 +72,13 @@ export default function Header(props) {
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
+          
             <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li className="nav-item">
+                <div className="nav-link custom-text-style" >
+                  Welcome {user.name}
+                </div>
+              </li>
               <li className="nav-item">
                 <Link className="nav-link custom-text-style" to="/shop">
                   Shop
@@ -117,6 +123,11 @@ export default function Header(props) {
           </button>
           <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
             <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li className="nav-item">
+                <div className="nav-link custom-text-style" >
+                  Welcome {user.name}
+                </div>
+              </li>
               <li className="nav-item">
                 <Link className="nav-link custom-text-style" to="/shop">
                   Shop

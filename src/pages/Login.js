@@ -26,8 +26,14 @@ export default function Login(props) {
     sendNewUser: true,
   });
 
-  const {handleTokenAdd} = props;
+  const {handleTokenAdd, user} = props;
   const { name, email, password, passwordLogin, emailLogin, error, sendNewUser } = values;
+console.log(user)
+
+if (user!== null){
+ navigate("/")
+}
+
 
   const checkSignUp = () => {
 

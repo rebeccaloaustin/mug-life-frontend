@@ -65,8 +65,10 @@ export default function Product(props) {
       <h2>{product.name}</h2>
       <p>{product.description}</p>
       <p className="price">Price: ${product.price}</p>
-      </div>
       <p>Stock: {product.stock}</p>
+      </div>
+      </div>
+
       <div className="quantity-section">
         <label htmlFor="quantity">Quantity:</label>
         <span>
@@ -90,7 +92,6 @@ export default function Product(props) {
         </button>
         {showSuccess()}
         </div>
-      </div>
     </div>
   );
 }

@@ -20,11 +20,17 @@
         color:black
       }
     }
-    
+    .product-details-container{
+      display: flex;  
+      align-items: flex-start;
+      column-gap: 20px; 
+      
+    }
     .product-image {
       width: 100%;
       max-width: 400px;
-      margin-bottom: 30px;
+      margin-bottom: 20px;
+    
   
       img {
         width: 100%;
@@ -41,10 +47,9 @@
   
     .price {
       font-size: 18px; 
-      margin-bottom: 20px; 
+      margin-bottom: 0px; 
     }
   
-  .product-details {margin-top:0;}
     
   
    .add-to-cart {

@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../Cart.scss";
 import { loadStripe } from "@stripe/stripe-js";
@@ -10,15 +10,16 @@ const stripeLoadedPromise = loadStripe(
 export default function Cart({ cart, onProductDelete, onQuantityChange }) {
   const navigate = useNavigate();
 
-  
   const calculateTotalPrice = () => {
-    return cart.reduce((total, product) => total + product.price * product.quantity, 0);
+    return cart.reduce(
+      (total, product) => total + product.price * product.quantity,
+      0
+    );
   };
 
-  useEffect(()=>{
-    console.log(cart)
-  },[])
-
+  useEffect(() => {
+    console.log(cart);
+  }, []);
 
   function handleCheckout(event) {
     event.preventDefault();
@@ -27,65 +28,87 @@ export default function Cart({ cart, onProductDelete, onQuantityChange }) {
       return { price: product.price_id, quantity: product.quantity };
     });
 
-    stripeLoadedPromise.then((stripe) => {
-      stripe
-        .redirectToCheckout({
-          lineItems: lineItems,
-          mode: "payment",
-          successUrl: "http://localhost:3000/",
-          cancelUrl: "http://localhost:3000/",
-          customerEmail: "gamyburgos@gmail.com",
-        })
-        .then((response) => {
-          // this will only log if the redirect did not work
-          console.log(response.error);
-        })
-        .catch((error) => {
-          // wrong API key? you will see the error message here
-          console.log(error);
-        });
-    });
+      stripeLoadedPromise.then((stripe) => {
+        stripe
+          .redirectToCheckout({
+            lineItems: lineItems,
+            mode: "payment",
+            successUrl: "http://localhost:3000/",
+            cancelUrl: "http://localhost:3000/",
+            customerEmail: "gamyburgos@gmail.com",
+          })
+          .then((response) => {
+            // this will only log if the redirect did not work
+            console.log(response.error);
+          })
+          .catch((error) => {
+            // wrong API key? you will see the error message here
+            console.log(error);
+          });
+      });
   }
-  
-  
 
   return (
-    <div className='cart container'>
+    <div className="cart container">
       <h2>Shopping Cart</h2>
       {cart.map((product) => (
         <div key={product._id}>
           <p>{product.name}</p>
           <p>Price: ${product.price}</p>
           <p>
-            Quantity:{''}
+            Quantity:{""}
             <span>
-              <button onClick={() => onQuantityChange(product._id, product.quantity - 1)}>-</button>
+              <button
+                onClick={() =>
+                  onQuantityChange(product._id, product.quantity - 1)
+                }
+              >
+                -
+              </button>
               <input
                 type="number"
                 value={product.quantity}
-                onChange={(e) => onQuantityChange(product._id, parseInt(e.target.value, 10))}
+                onChange={(e) =>
+                  onQuantityChange(product._id, parseInt(e.target.value, 10))
+                }
                 min="0"
               />
-              <button onClick={() => onQuantityChange(product._id, product.quantity + 1)}>+</button>
+              <button
+                onClick={() =>
+                  onQuantityChange(product._id, product.quantity + 1)
+                }
+              >
+                +
+              </button>
             </span>
           </p>
           <p>Total: ${product.price * product.quantity}</p>
-          <button onClick={() => onProductDelete(product._id, product.quantity)}>Remove</button>
+          <button
+            onClick={() => onProductDelete(product._id, product.quantity)}
+          >
+            Remove
+          </button>
         </div>
       ))}
       <p>Subtotal: ${calculateTotalPrice()}</p>
-      <button className='btn btn-primary' onClick={handleCheckout}>
-        Checkout
-      </button>
       <form>
-  <div class="form-group">
-    <label for="exampleInputEmail1">Email address</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"/>
-    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-  </div>
-  </form>
-      
+        <div class="form-group">
+          <label for="exampleInputEmail1">Email address</label>
+          <input
+            type="email"
+            class="form-control"
+            id="exampleInputEmail1"
+            aria-describedby="emailHelp"
+            placeholder="Enter email"
+          />
+          <small id="emailHelp" class="form-text text-muted">
+            Enter your email to checkout
+          </small>
+        </div>
+        <button type="submit" class="btn btn-primary" onClick={handleCheckout}>
+          Checkout
+        </button>
+      </form>
     </div>
   );
 }
-

@@ -2,7 +2,9 @@ import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../Cart.scss";
 import { loadStripe } from "@stripe/stripe-js";
+
 import UserCheckout from "../components/UserCheckout";
+
 
 export default function Cart({ cart, onProductDelete, onQuantityChange, user }) {
   const navigate = useNavigate();
@@ -63,6 +65,7 @@ export default function Cart({ cart, onProductDelete, onQuantityChange, user }) 
           <button onClick={() => onProductDelete(product._id, product.quantity)}>Remove</button>
         </div>
       ))}
+
       <p className="mb-2">Subtotal: ${calculateTotalPrice()}</p>
 
       {user === null ? (
@@ -72,6 +75,7 @@ export default function Cart({ cart, onProductDelete, onQuantityChange, user }) 
       ) : (
        <UserCheckout handleCheckout={handleCheckout} user={user} />
       )}
+
     </div>
   );
 }

@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../Cart.scss";
 import { loadStripe } from "@stripe/stripe-js";
+import Logcheck from "../components/LogCheck";
 
 const stripeLoadedPromise = loadStripe(
   "pk_test_51OTFiGHbE7pOmJyp8PM15yVCsvzaKWycyOHzcjp82uUZJn5lKua73BNZI6s8njjApMU6529q1Pu6cpbOwcIWHTzs00LcPaLhLe"
@@ -91,24 +92,7 @@ export default function Cart({ cart, onProductDelete, onQuantityChange }) {
         </div>
       ))}
       <p>Subtotal: ${calculateTotalPrice()}</p>
-      <form>
-        <div class="form-group">
-          <label for="exampleInputEmail1">Email address</label>
-          <input
-            type="email"
-            class="form-control"
-            id="exampleInputEmail1"
-            aria-describedby="emailHelp"
-            placeholder="Enter email"
-          />
-          <small id="emailHelp" class="form-text text-muted">
-            Enter your email to checkout
-          </small>
-        </div>
-        <button type="submit" class="btn btn-primary" onClick={handleCheckout}>
-          Checkout
-        </button>
-      </form>
+
     </div>
   );
 }

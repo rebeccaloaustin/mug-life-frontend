@@ -3,23 +3,21 @@ import { useNavigate } from "react-router-dom";
 import "../Cart.scss";
 import { loadStripe } from "@stripe/stripe-js";
 
-const stripeLoadedPromise = loadStripe(
-  "pk_test_51OTFiGHbE7pOmJyp8PM15yVCsvzaKWycyOHzcjp82uUZJn5lKua73BNZI6s8njjApMU6529q1Pu6cpbOwcIWHTzs00LcPaLhLe"
-);
+import UserCheckout from "../components/UserCheckout";
 
-export default function Cart({ cart, onProductDelete, onQuantityChange }) {
+
+export default function Cart({ cart, onProductDelete, onQuantityChange, user }) {
   const navigate = useNavigate();
-
+  const paymentKey = process.env.REACT_APP_PK_KEY;
   const calculateTotalPrice = () => {
-    return cart.reduce(
-      (total, product) => total + product.price * product.quantity,
-      0
-    );
+    return cart.reduce((total, product) => total + product.price * product.quantity, 0);
   };
 
   useEffect(() => {
-    console.log(cart);
+    
+    console.log(user)
   }, []);
+  const stripeLoadedPromise = loadStripe(paymentKey);
 
   function handleCheckout(event) {
     event.preventDefault();
@@ -28,24 +26,24 @@ export default function Cart({ cart, onProductDelete, onQuantityChange }) {
       return { price: product.price_id, quantity: product.quantity };
     });
 
-      stripeLoadedPromise.then((stripe) => {
-        stripe
-          .redirectToCheckout({
-            lineItems: lineItems,
-            mode: "payment",
-            successUrl: "http://localhost:3000/",
-            cancelUrl: "http://localhost:3000/",
-            customerEmail: "gamyburgos@gmail.com",
-          })
-          .then((response) => {
-            // this will only log if the redirect did not work
-            console.log(response.error);
-          })
-          .catch((error) => {
-            // wrong API key? you will see the error message here
-            console.log(error);
-          });
-      });
+    stripeLoadedPromise.then((stripe) => {
+      stripe
+        .redirectToCheckout({
+          lineItems: lineItems,
+          mode: "payment",
+          successUrl: "http://localhost:3000/",
+          cancelUrl: "http://localhost:3000/",
+          customerEmail: user.email ? user.email : "",
+        })
+        .then((response) => {
+          // this will only log if the redirect did not work
+          console.log(response.error);
+        })
+        .catch((error) => {
+          // wrong API key? you will see the error message here
+          console.log(error);
+        });
+    });
   }
 
   return (
@@ -58,57 +56,26 @@ export default function Cart({ cart, onProductDelete, onQuantityChange }) {
           <p>
             Quantity:{""}
             <span>
-              <button
-                onClick={() =>
-                  onQuantityChange(product._id, product.quantity - 1)
-                }
-              >
-                -
-              </button>
-              <input
-                type="number"
-                value={product.quantity}
-                onChange={(e) =>
-                  onQuantityChange(product._id, parseInt(e.target.value, 10))
-                }
-                min="0"
-              />
-              <button
-                onClick={() =>
-                  onQuantityChange(product._id, product.quantity + 1)
-                }
-              >
-                +
-              </button>
+              <button onClick={() => onQuantityChange(product._id, product.quantity - 1)}>-</button>
+              <input type="number" value={product.quantity} onChange={(e) => onQuantityChange(product._id, parseInt(e.target.value, 10))} min="0" />
+              <button onClick={() => onQuantityChange(product._id, product.quantity + 1)}>+</button>
             </span>
           </p>
           <p>Total: ${product.price * product.quantity}</p>
-          <button
-            onClick={() => onProductDelete(product._id, product.quantity)}
-          >
-            Remove
-          </button>
+          <button onClick={() => onProductDelete(product._id, product.quantity)}>Remove</button>
         </div>
       ))}
-      <p>Subtotal: ${calculateTotalPrice()}</p>
-      <form>
-        <div class="form-group">
-          <label for="exampleInputEmail1">Email address</label>
-          <input
-            type="email"
-            class="form-control"
-            id="exampleInputEmail1"
-            aria-describedby="emailHelp"
-            placeholder="Enter email"
-          />
-          <small id="emailHelp" class="form-text text-muted">
-            Enter your email to checkout
-          </small>
+
+      <p className="mb-2">Subtotal: ${calculateTotalPrice()}</p>
+
+      {user === null ? (
+        <div>
+          <h3>No User here</h3>
         </div>
-        <button type="submit" class="btn btn-primary" onClick={handleCheckout}>
-          Checkout
-        </button>
-      </form>
+      ) : (
+       <UserCheckout handleCheckout={handleCheckout} user={user} />
+      )}
+
     </div>
   );
 }

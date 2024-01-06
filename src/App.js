@@ -12,6 +12,8 @@ import Login from "./pages/Login";
 import NewProduct from "./pages/NewProduct";
 import ManageShop from "./pages/ManageShop";
 import EditProduct from "./pages/EditProduct";
+import { jwtDecode } from "jwt-decode";
+
 
 function App() {
   // this is for the state
@@ -24,10 +26,15 @@ function App() {
     }
   });
   const [products, setProducts] = useState([]);
+  const [user, setUser] = useState(null);
   const [token, setToken] = useState(()=>{
     const jwtToken = localStorage.getItem("token")
     if(jwtToken){
+      var decoded = jwtDecode(jwtToken);
+      console.log(decoded)
+      setUser(decoded)
       return jwtToken;
+      
     }else {
       return null
     }
@@ -40,9 +47,15 @@ function App() {
   }, [cart]);
 
 
-  function handleTokenAdd(token){
-    localStorage.setItem("token", token)
-    setToken(token)
+  function handleTokenAdd(tokn){
+    setUser(tokn)
+    localStorage.setItem("token", tokn)
+    setToken(tokn)
+  }
+  function logOut(){
+    localStorage.removeItem("token");
+    setToken(null)
+    setUser(null)
   }
 
   function handleProductAdd(newProduct) {
@@ -108,7 +121,7 @@ function App() {
 
   return (
     <div className="App">
-      <Header cart={cart} />
+      <Header cart={cart} user={user} logOut={logOut} />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />

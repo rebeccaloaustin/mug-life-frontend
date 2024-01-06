@@ -10,7 +10,16 @@ export default function NewProduct() {
   const [productPrice, setProductPrice] = useState("");
   const [productPriceID, setProductPriceID] = useState("");
   const [productImage, setProductImage] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
   const url = process.env.REACT_APP_URL;
+
+    
+  const showSuccess = () => (
+    <div className="alert alert-success" style={{ display: successMessage? "" : "none" }}>
+      {successMessage}
+    </div>
+  );
+
   const handleSubmit =(e) => {
     e.preventDefault();
     const fetchURL = `${url}/products`;
@@ -27,7 +36,8 @@ export default function NewProduct() {
       return response.json()
     }).then(data=>{
       console.log(data)
-      navigate('/shop');
+      setSuccessMessage("Congratulations, new product!")
+      // navigate('/shop');
     })
       .catch((error) => {
         console.error(error);
@@ -36,6 +46,7 @@ export default function NewProduct() {
 
   return (
     <div className="newproduct container">
+    {showSuccess()}
       <h1>Add a new product</h1>
       <form
         onSubmit={(e) => {

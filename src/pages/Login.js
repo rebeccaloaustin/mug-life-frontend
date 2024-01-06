@@ -1,6 +1,7 @@
 // Import necessary libraries and styles
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import * as jwt_decode from "jwt-decode";
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function Login(props) {
@@ -97,10 +98,17 @@ export default function Login(props) {
             let message = data.error
             setValues({ ...values, error: message})
           } else {
-            let string = data.token.split(" ")[1]
-            handleTokenAdd(string)
-            console.log(string)
+            let token = data.token.split(" ")[1]
+            handleTokenAdd(token);
+            console.log(token);
+            try {
+              const decodedToken = jwt_decode(token);
+              console.log(decodedToken);
+            } catch (error){
+              console.log("Error decoding token:", error);
+            }
             navigate("/");
+
           }
         })
         .catch((error) => {

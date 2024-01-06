@@ -128,7 +128,7 @@ function App() {
         <Route path="/about"  element={<About user={user}  />} />
         <Route path="/shop"  element={<Shop user={user} />} />
         <Route path="/cart"  element={<Cart  user={user}   cart={cart} onProductDelete={handleProductDelete} onProductAdd={handleProductAdd} onQuantityChange={handleQuantityChange} />} />
-        <Route path="/login"  element={<Login  token={token} handleTokenAdd = {handleTokenAdd} />} />
+        <Route path="/login"  element={<Login user={user}  token={token} handleTokenAdd = {handleTokenAdd} />} />
         <Route path="/product/edit/:id"  element={<EditProduct user={user}  />} />
         <Route path="/product/new"   element={<NewProduct user={user} />} />
         <Route path="/product/:id"  element={<Product user={user}  cart={cart} onProductAdd={handleProductAdd} onProductDelete={handleProductDelete} />} />

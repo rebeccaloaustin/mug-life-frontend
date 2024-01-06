@@ -63,7 +63,15 @@
 
 
 .warning{
-    border: red 2px solid;
+    color:#721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    position: relative;
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 1rem;
+    margin-top: 0.30rem;
+    border-radius: 0.25rem;
+    border: 1px solid transparent;
 }
 .hidden{
     display: none;

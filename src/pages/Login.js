@@ -58,6 +58,8 @@ if (user!== null){
     }
     if (!submit) {
       setValues({ ...values, sendNewUser: false });
+    }else{
+      setValues({ ...values, sendNewUser: true});
     }
   };
   

@@ -1,5 +1,5 @@
 // Import necessary libraries and styles
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../Login.scss";
 import * as jwt_decode from "jwt-decode";
@@ -30,9 +30,12 @@ export default function Login(props) {
   const { name, email, password, passwordLogin, emailLogin, error, sendNewUser } = values;
 console.log(user)
 
-if (user!== null){
- navigate("/")
-}
+useEffect(()=>{
+  if (user!== null){
+    navigate("/")
+   }
+},[])
+
 
 
   const checkSignUp = () => {

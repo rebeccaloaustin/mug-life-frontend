@@ -126,7 +126,9 @@ if (user!== null){
     } else {
 
       checkSignUp()
-      if (!sendNewUser) {
+      console.log(sendNewUser)
+      if (sendNewUser) {
+        console.log({ email: values.email, password: values.password, name: values.name })
         const fetchURL = `${url}/users/register`;
         const options = {
           method: "POST",
@@ -134,7 +136,7 @@ if (user!== null){
             Accept: "application/json",
             "Content-Type": "application/json;charset=UTF-8",
           },
-          body: JSON.stringify({ email: values.email, password: values.password, name: values.name }),
+          body: JSON.stringify({ email: values.email.toLowerCase(), password: values.password, name: values.name }),
         };
         fetch(fetchURL, options)
           .then((response) => {

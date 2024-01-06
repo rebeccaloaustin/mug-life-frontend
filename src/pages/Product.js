@@ -11,6 +11,13 @@ export default function Product(props) {
   const [product, setProduct] = useState(null);
   const { cart, onProductAdd } = props;
   const [showAlert, setShowAlert] = useState(false);
+  const [successMessage, setSuccessMessage] = useState("");
+
+  const showSuccess = () => (
+    <div className="alert alert-success" style={{ display: successMessage? "" : "none" }}>
+      {successMessage}
+    </div>
+  );
 
   useEffect(() => {
     get(`/products/${id}`)
@@ -33,10 +40,7 @@ export default function Product(props) {
   const handleAddToCart = () => {
     onProductAdd({ ...product, quantity });
     setQuantity(1); // Reset quantity to 1 after adding to the cart
-    setShowAlert(true);
-    setTimeout(() => {
-      setShowAlert(false);
-    }, 3000);
+    setSuccessMessage("Your item was added to the cart!!")
   };
 
   if (loading) {
@@ -80,12 +84,10 @@ export default function Product(props) {
           />
           <button onClick={() => handleQuantityChange(quantity + 1)}>+</button>
         </span>
-        <div className="alert alert-success">
-  Your item was added to the cart!
-</div>
         <button onClick={handleAddToCart} className="add-to-cart">
           Add to Cart
         </button>
+        {showSuccess()}
       </div>
     </div>
   );

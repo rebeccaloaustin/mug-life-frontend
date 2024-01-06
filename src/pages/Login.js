@@ -1,6 +1,7 @@
 // Import necessary libraries and styles
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "../Login.scss";
 import * as jwt_decode from "jwt-decode";
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -118,7 +119,6 @@ export default function Login(props) {
 
       checkSignUp()
       if (!sendNewUser) {
-
         const fetchURL = `${url}/users/register`;
         const options = {
           method: "POST",
@@ -146,8 +146,7 @@ export default function Login(props) {
     <div className="container mt-5">
          {showError()}
       <div className="row justify-content-center">
-  
-        <div className="col-12">
+        <div className="col-md-6">
           <ul className="nav nav-tabs">
             <li className="nav-item">
               <a className={`nav-link ${activeTab === "login" ? "active" : ""}`} onClick={() => switchTab("login")} href="#">
@@ -187,8 +186,8 @@ export default function Login(props) {
             {activeTab === "signup" && (
               <div className="tab-pane fade show active">
                 {/* Sign up form */}
-                <form onSubmit={(e) => submitLogin(e)}>
-                  <div className="mb-3">
+                <form onSubmit={(e) => submitLogin(e)} className="form-container">
+                  <div className="mb-2">
                     <label htmlFor="signupName" className="form-label">
                       Name
                     </label>
@@ -197,7 +196,7 @@ export default function Login(props) {
                       Please enter a valid name
                     </div>
                   </div>
-                  <div className="mb-3">
+                  <div className="mb-2">
                     <label htmlFor="signupEmail" className="form-label">
                       Email address
                     </label>

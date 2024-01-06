@@ -1,10 +1,11 @@
 .product-page {
     display: flex;
     flex-direction: column;
-    padding: 20px;
+    padding: 170px;
     background-color: #f9f7f7;
     font-family: 'Montserrat', sans-serif;
-  
+    justify-content: center;
+}
     .back-to-shop {
       margin-bottom: 20px;
       font-size: 14px;
@@ -23,7 +24,7 @@
     .product-details-container{
       display: flex;  
       align-items: flex-start;
-      column-gap: 20px; 
+      column-gap: 40px; 
       
     }
     .product-image {
@@ -52,7 +53,7 @@
   
     
   
-   .add-to-cart {
+    .add-to-cart {
       background-color: #969f84;
       font-family: 'Montserrat', sans-serif;
       color: #fff;
@@ -61,7 +62,7 @@
       cursor: pointer;
       font-size: 16px;
       transition: background-color 0.3s;
-  
+      
       &:hover {
         background-color: white;
         color: #969f84;
@@ -69,5 +70,4 @@
         border-color: #969f84;
       }
     }
-  }
   

@@ -15,6 +15,7 @@ export default function Login(props) {
   const invalidUserName = document.getElementById("invalidUserName");
   const signupPassword = document.getElementById("signupPassword");
   const invalidPassword = document.getElementById("invalidPassword");
+  const [successMessage, setSuccessMessage] = useState("");
   const url = process.env.REACT_APP_URL;
   const [values, setValues] = useState({
     name: "",
@@ -30,12 +31,16 @@ export default function Login(props) {
   const { name, email, password, passwordLogin, emailLogin, error, sendNewUser } = values;
 console.log(user)
 
-useEffect(()=>{
-  if (user!== null){
-    navigate("/")
-   }
-},[])
 
+const showSuccess = () => (
+  <div className="alert alert-success" style={{ display: successMessage? "" : "none" }}>
+    {successMessage}
+  </div>
+);
+
+if (user!== null){
+ navigate("/")
+}
 
 
   const checkSignUp = () => {
@@ -63,6 +68,7 @@ useEffect(()=>{
       setValues({ ...values, sendNewUser: false });
     }else{
       setValues({ ...values, sendNewUser: true});
+      setSuccessMessage("Sign up successful!");
     }
   };
   
@@ -158,6 +164,7 @@ useEffect(()=>{
   return (
     <div className="container mt-5">
          {showError()}
+         {showSuccess()}
       <div className="row justify-content-center">
         <div className="col-md-6">
           <ul className="nav nav-tabs">

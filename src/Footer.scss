@@ -1,5 +1,22 @@
 .footer{
     margin-top: 20vh;
-    font-family: 'Raleway', sans-serif;
-    
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    background-color: #1c1b1b;
+    color:#969f84;
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    padding-top: 60px;
+    padding-bottom: 40px;
+    #fbIcon{
+        color: #ffffff;
+    }
+    a{
+        color: #ffffff;
+        
+    }
+    a:hover{
+        color: #969f84;
+        text-decoration: none;
+    }
 }

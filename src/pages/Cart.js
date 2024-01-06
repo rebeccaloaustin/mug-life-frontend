@@ -5,17 +5,23 @@ import { loadStripe } from "@stripe/stripe-js";
 
 import UserCheckout from "../components/UserCheckout";
 
-
-export default function Cart({ cart, onProductDelete, onQuantityChange, user }) {
+export default function Cart({
+  cart,
+  onProductDelete,
+  onQuantityChange,
+  user,
+}) {
   const navigate = useNavigate();
   const paymentKey = process.env.REACT_APP_PK_KEY;
   const calculateTotalPrice = () => {
-    return cart.reduce((total, product) => total + product.price * product.quantity, 0);
+    return cart.reduce(
+      (total, product) => total + product.price * product.quantity,
+      0
+    );
   };
 
   useEffect(() => {
-    
-    console.log(user)
+    console.log(user);
   }, []);
   const stripeLoadedPromise = loadStripe(paymentKey);
 
@@ -49,34 +55,77 @@ export default function Cart({ cart, onProductDelete, onQuantityChange, user }) 
 
   return (
     <div className="cart container">
-      <h2>Shopping Cart</h2>
+      <h2 className="display-5 mb-5 text-center">Shopping Cart</h2>
       {cart.map((product) => (
-        <div key={product._id}>
-          <p>{product.name}</p>
-          <p>Price: ${product.price}</p>
-          <p>
-            Quantity:{""}
-            <span>
-              <button onClick={() => onQuantityChange(product._id, product.quantity - 1)}>-</button>
-              <input type="number" value={product.quantity} onChange={(e) => onQuantityChange(product._id, parseInt(e.target.value, 10))} min="0" />
-              <button onClick={() => onQuantityChange(product._id, product.quantity + 1)}>+</button>
-            </span>
+        <div key={product._id} className="row mb-4">
+          <div className="cartHeader">
+            <span>Product</span>
+            <span>Quantity</span>
+            <span>Total</span>
+          </div>
+          <div className="col-md-4">
+            <img
+              src={product.image}
+              className="card-img-top"
+              id="productCartImage"
+              alt={product.name}
+            />
+          </div>
+          <div className="col-md-8 d-flex align-items-center">
+            <p className="col-md-4" id="productCartName">
+              {product.name}
+            </p>
+            <p className="col-md-4" id="productPrice">
+              Price: ${product.price}
+            </p>
+            <div className="col-md-2">
+              <p className="form-outline w-25" id="productCartQuantity">
+                Quantity:{""}
+                <span className="d-flex align-items-center">
+                  <div
+                    onClick={() =>
+                      onQuantityChange(product._id, product.quantity - 1)
+                    }
+                  >
+                  <i class="bi bi-dash-lg"></i>
+                  </div>
+                  <div>{product.quantity}</div>
+                  <div
+                    onClick={() =>
+                      onQuantityChange(product._id, product.quantity + 1)
+                    }
+                  >
+                   <i class="bi bi-plus-lg"></i>
+                  </div>
+                </span>
+              </p>
+            </div>
+            <div onClick={() => onProductDelete(product._id, product.quantity)}>
+              <i class="bi bi-trash3"></i>
+            </div>
+          </div>
+          <p className="col-md-3 ml-auto">
+            Total: ${product.price * product.quantity}
           </p>
-          <p>Total: ${product.price * product.quantity}</p>
-          <button onClick={() => onProductDelete(product._id, product.quantity)}>Remove</button>
         </div>
       ))}
 
-      <p className="mb-2">Subtotal: ${calculateTotalPrice()}</p>
+      <p className="col-md-3 ml-auto">Subtotal: ${calculateTotalPrice()}</p>
 
       {user === null ? (
-        <div>
-          <h3>No User here</h3>
+        <div className="display-5 mb-5 text-center">
+          <h3>Please sign in to checkout</h3>
+          <button
+            type="submit"
+            className="button"
+            onClick={() => navigate("/login")}
+          >
+            Go to login
+          </button>
         </div>
       ) : (
-       <UserCheckout handleCheckout={handleCheckout} user={user} />
+        <UserCheckout handleCheckout={handleCheckout} user={user} />
       )}
-
     </div>
   );
 }

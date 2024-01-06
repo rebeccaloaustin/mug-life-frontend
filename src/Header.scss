@@ -1,17 +1,16 @@
 
 #headerBrandName{
     font-family: 'Pacifico', cursive;
-    color:black
-    
+    color:#1c1b1b;  
+   font-size: 3vh;
 }
-#homeSlogan{
-    font-family: 'Poppins', sans-serif;
-    color:black;
-    font-size: 7vh;
+#headerBrandName:hover{
+  text-decoration: none;
 }
-
 #navBar{
 background-color: transparent;
+padding-bottom: 30px;
+margin-top: 2vh;
 }
 
 .custom-text-style{

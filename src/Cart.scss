@@ -1,0 +1,26 @@
+#productCartImage{
+    width: 100%;
+      max-width: 400px;
+      margin-bottom: 20px;
+}
+.cart{
+background-color: #E5E5E5;
+.button {
+    background-color: #969f84;
+    font-family: 'Montserrat', sans-serif;
+    color: #E5E5E5;
+    border: solid;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: #fff;
+      color: #969f84;
+      border-style: solid;
+      border-color: #969f84;
+    }
+  }
+}
+

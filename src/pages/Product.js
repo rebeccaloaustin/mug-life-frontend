@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
-import useFetch from '../useFetch';
+import React, { useState, useEffect } from "react";
+import { useParams, Link } from "react-router-dom";
+import useFetch from "../useFetch";
 import "../Product.scss";
 
 export default function Product(props) {
@@ -10,7 +10,7 @@ export default function Product(props) {
   const { get, loading } = useFetch(url);
   const [product, setProduct] = useState(null);
   const { cart, onProductAdd } = props;
-
+  const [showAlert, setShowAlert] = useState(false);
 
   useEffect(() => {
     get(`/products/${id}`)
@@ -20,11 +20,8 @@ export default function Product(props) {
           console.log(data);
         }
       })
-      .catch((err) => console.error(err))
-
-      ;
+      .catch((err) => console.error(err));
   }, []);
-
 
   const handleQuantityChange = (newQuantity) => {
     // Ensure newQuantity is a valid number and not NaN
@@ -34,8 +31,12 @@ export default function Product(props) {
   };
 
   const handleAddToCart = () => {
-    onProductAdd({...product, quantity} );
+    onProductAdd({ ...product, quantity });
     setQuantity(1); // Reset quantity to 1 after adding to the cart
+    setShowAlert(true);
+    setTimeout(() => {
+      setShowAlert(false);
+    }, 3000);
   };
 
   if (loading) {
@@ -48,13 +49,13 @@ export default function Product(props) {
 
   return (
     <div className="product-page">
-       <Link to="/shop">
+      <Link to="/shop">
         <i className="bi bi-arrow-left"> back to shop</i>
       </Link>
       <div className="product-image">
-      <img src={product.image} alt={product.name} />
-      </div> 
-     
+        <img src={product.image} alt={product.name} />
+      </div>
+
       <div className="product-details"></div>
       <h2>{product.name}</h2>
       <p>{product.description}</p>
@@ -64,7 +65,11 @@ export default function Product(props) {
       <div>
         <label htmlFor="quantity">Quantity:</label>
         <span>
-          <button onClick={() => handleQuantityChange(Math.max(1, quantity - 1))}>-</button>
+          <button
+            onClick={() => handleQuantityChange(Math.max(1, quantity - 1))}
+          >
+            -
+          </button>
           <input
             type="number"
             id="quantity"
@@ -75,7 +80,12 @@ export default function Product(props) {
           />
           <button onClick={() => handleQuantityChange(quantity + 1)}>+</button>
         </span>
-        <button onClick={handleAddToCart} className="add-to-cart">Add to Cart</button>
+        <div className="alert alert-success">
+  Your item was added to the cart!
+</div>
+        <button onClick={handleAddToCart} className="add-to-cart">
+          Add to Cart
+        </button>
       </div>
     </div>
   );

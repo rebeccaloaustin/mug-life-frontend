@@ -32,20 +32,20 @@ export default function Login(props) {
     let regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     let submit = true;
     if (!email.match(regex)) {
-      signUpEmailForm.classList.add("warning");
-      invalidEmail.classList.remove("hidden");
+      invalidEmail?.classList.add("warning");
+      invalidEmail?.classList.remove("hidden");
       submit = false;
     }
     if (name.trim().length < 1) {
 
-      signUpName.classList.add("warning");
-      invalidUserName.classList.remove("hidden");
+      invalidUserName?.classList.add("warning");
+      invalidUserName?.classList.remove("hidden");
       submit = false;
     }
     if (password.trim().length < 1) {
    
-      signupPassword.classList.add("warning");
-      invalidPassword.classList.remove("hidden");
+      invalidPassword?.classList.add("warning");
+      invalidPassword?.classList.remove("hidden");
       submit = false;
     }
     if (!submit) {
@@ -66,11 +66,11 @@ export default function Login(props) {
 
   const handleChange = (name) => (event) => {
     const value = event.target.value;
-    signUpEmailForm?.classList.remove("warning");
+    invalidEmail?.classList.remove("warning");
     invalidEmail?.classList.add("hidden");
-    signUpName?.classList.remove("warning");
+    invalidUserName?.classList.remove("warning");
     invalidUserName?.classList.add("hidden");
-    signupPassword?.classList.remove("warning");
+    invalidPassword?.classList.remove("warning");
     invalidPassword?.classList.add("hidden");
     setValues({ ...values, [name]: value, error: "" });
   };

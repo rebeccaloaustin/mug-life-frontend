@@ -7,12 +7,12 @@ export default function Cart({ cart, onProductDelete, onQuantityChange }) {
   const calculateTotalPrice = () => {
     return cart.reduce((total, product) => total + product.price * product.quantity, 0);
   };
-  const handleCheckout = () => {
-    navigate('/checkout');
-  };
   useEffect(()=>{
     console.log(cart)
   },[])
+  const handleCheckout = () => {
+    navigate('/checkout');
+  };
   
 
   return (
@@ -43,6 +43,14 @@ export default function Cart({ cart, onProductDelete, onQuantityChange }) {
       <button onClick={handleCheckout}>
         Checkout
       </button>
+      <form>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Email address</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"/>
+    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+  </div>
+  </form>
+      
     </div>
   );
 }

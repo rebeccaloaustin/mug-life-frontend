@@ -23,9 +23,9 @@ export default function Footer() {
             <h5>Connect With Us</h5>
             <p>Follow us on social media:</p>
             <ul className="list-inline">
-              <li className="list-inline-item"><a href="#"><i className="bi bi-facebook"></i></a></li>
-              <li className="list-inline-item"><a href="#"><i className="bi bi-twitter-x"></i></a></li>
-              <li className="list-inline-item"><a href="#"><i className="bi bi-instagram"></i></a></li>
+              <li className="list-inline-item"><a href="#"><i className="bi bi-facebook" id="fbIcon"></i></a></li>
+              <li className="list-inline-item"><a href="#"><i className="bi bi-twitter-x" id="fbIcon"></i></a></li>
+              <li className="list-inline-item"><a href="#"><i className="bi bi-instagram" id="fbIcon"></i></a></li>
             </ul>
           </div>
         </div>

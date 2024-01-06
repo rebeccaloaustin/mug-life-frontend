@@ -2,10 +2,9 @@ import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../Cart.scss";
 import { loadStripe } from "@stripe/stripe-js";
+import UserCheckout from "../components/UserCheckout";
 
-const stripeLoadedPromise = loadStripe("pk_test_51OTFiGHbE7pOmJyp8PM15yVCsvzaKWycyOHzcjp82uUZJn5lKua73BNZI6s8njjApMU6529q1Pu6cpbOwcIWHTzs00LcPaLhLe");
-
-export default function Cart({ cart, onProductDelete, onQuantityChange }) {
+export default function Cart({ cart, onProductDelete, onQuantityChange, user }) {
   const navigate = useNavigate();
   const paymentKey = process.env.REACT_APP_PK_KEY;
   const calculateTotalPrice = () => {
@@ -13,7 +12,8 @@ export default function Cart({ cart, onProductDelete, onQuantityChange }) {
   };
 
   useEffect(() => {
-    console.log(cart);
+    
+    console.log(user)
   }, []);
   const stripeLoadedPromise = loadStripe(paymentKey);
 
@@ -31,7 +31,7 @@ export default function Cart({ cart, onProductDelete, onQuantityChange }) {
           mode: "payment",
           successUrl: "http://localhost:3000/",
           cancelUrl: "http://localhost:3000/",
-          customerEmail: "gamyburgos@gmail.com",
+          customerEmail: user.email ? user.email : "",
         })
         .then((response) => {
           // this will only log if the redirect did not work
@@ -63,19 +63,15 @@ export default function Cart({ cart, onProductDelete, onQuantityChange }) {
           <button onClick={() => onProductDelete(product._id, product.quantity)}>Remove</button>
         </div>
       ))}
-      <p>Subtotal: ${calculateTotalPrice()}</p>
-      <form>
-        <div class="form-group">
-          <label for="exampleInputEmail1">Email address</label>
-          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" />
-          <small id="emailHelp" class="form-text text-muted">
-            Enter your email to checkout
-          </small>
+      <p className="mb-2">Subtotal: ${calculateTotalPrice()}</p>
+
+      {user === null ? (
+        <div>
+          <h3>No User here</h3>
         </div>
-        <button type="submit" class="btn btn-primary" onClick={handleCheckout}>
-          Checkout
-        </button>
-      </form>
+      ) : (
+       <UserCheckout handleCheckout={handleCheckout} user={user} />
+      )}
     </div>
   );
 }

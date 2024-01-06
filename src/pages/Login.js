@@ -1,5 +1,5 @@
 // Import necessary libraries and styles
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../Login.scss";
 import * as jwt_decode from "jwt-decode";
@@ -30,9 +30,12 @@ export default function Login(props) {
   const { name, email, password, passwordLogin, emailLogin, error, sendNewUser } = values;
 console.log(user)
 
-if (user!== null){
- navigate("/")
-}
+useEffect(()=>{
+  if (user!== null){
+    navigate("/")
+   }
+},[])
+
 
 
   const checkSignUp = () => {
@@ -126,7 +129,9 @@ if (user!== null){
     } else {
 
       checkSignUp()
-      if (!sendNewUser) {
+      console.log(sendNewUser)
+      if (sendNewUser) {
+        console.log({ email: values.email, password: values.password, name: values.name })
         const fetchURL = `${url}/users/register`;
         const options = {
           method: "POST",
@@ -134,7 +139,7 @@ if (user!== null){
             Accept: "application/json",
             "Content-Type": "application/json;charset=UTF-8",
           },
-          body: JSON.stringify({ email: values.email, password: values.password, name: values.name }),
+          body: JSON.stringify({ email: values.email.toLowerCase(), password: values.password, name: values.name }),
         };
         fetch(fetchURL, options)
           .then((response) => {

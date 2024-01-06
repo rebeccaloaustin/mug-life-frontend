@@ -13,7 +13,7 @@ import NewProduct from "./pages/NewProduct";
 import ManageShop from "./pages/ManageShop";
 import EditProduct from "./pages/EditProduct";
 import { jwtDecode } from "jwt-decode";
-
+import NotFound from "./components/NotFound"; 
 
 function App() {
   // this is for the state
@@ -133,6 +133,7 @@ function App() {
         <Route path="/product/new" user={user}  element={<NewProduct />} />
         <Route path="/product/:id" user={user}  element={<Product cart={cart} onProductAdd={handleProductAdd} onProductDelete={handleProductDelete} />} />
         <Route path="/shop/manage" user={user}  element={<ManageShop />} />
+        <Route path='*' element={<NotFound/>} />
       </Routes>
       <Footer />
     </div>

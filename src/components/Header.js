@@ -5,6 +5,7 @@ import '../Header.scss';
 
 export default function Header(props) {
   const {cart} = props
+
   return (
     <div className="background-color">
     <nav className="navbar navbar-expand-lg navbar-light" id="navBar">

@@ -56,17 +56,18 @@ export default function Product(props) {
       <Link to="/shop">
         <i className="bi bi-arrow-left"> back to shop</i>
       </Link>
+      <div className='product-details-container'>
       <div className="product-image">
         <img src={product.image} alt={product.name} />
       </div>
 
-      <div className="product-details"></div>
+      <div className="product-details">
       <h2>{product.name}</h2>
       <p>{product.description}</p>
       <p className="price">Price: ${product.price}</p>
+      </div>
       <p>Stock: {product.stock}</p>
-
-      <div>
+      <div className="quantity-section">
         <label htmlFor="quantity">Quantity:</label>
         <span>
           <button
@@ -88,6 +89,7 @@ export default function Product(props) {
           Add to Cart
         </button>
         {showSuccess()}
+        </div>
       </div>
     </div>
   );

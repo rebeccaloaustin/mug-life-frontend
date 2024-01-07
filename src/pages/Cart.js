@@ -55,13 +55,13 @@ export default function Cart({
   return (
     <div className="cart container">
       <h2 className="display-5 mb-5 text-center">Shopping Cart</h2>
+      <div className="cartHeader">
+        <span id="prduct">Product</span>
+        <span id="qty">Quantity</span>
+        <span id="ttl">Total</span>
+      </div>
       {cart.map((product) => (
         <div key={product._id} className="row mb-4">
-          <div className="cartHeader">
-            <span>Product</span>
-            <span>Quantity</span>
-            <span>Total</span>
-          </div>
           <div className="col-md-4">
             <img
               src={product.image}
@@ -74,42 +74,42 @@ export default function Cart({
             <p className="col-md-4" id="productCartName">
               {product.name}
             </p>
-            <p className="col-md-4" id="productPrice">
-              Price: ${product.price}
-            </p>
             <div className="col-md-2">
-              <p className="form-outline w-25" id="productCartQuantity">
-                Quantity:{""}
+              <div className="form-outline w-25" id="productCartQuantity">
                 <span className="d-flex align-items-center">
                   <div
                     onClick={() =>
                       onQuantityChange(product._id, product.quantity - 1)
                     }
                   >
-                  <i class="bi bi-dash-lg"></i>
+                    <i className="bi bi-dash-square"></i>
                   </div>
                   <div>{product.quantity}</div>
                   <div
                     onClick={() =>
                       onQuantityChange(product._id, product.quantity + 1)
-                    }
-                  >
-                   <i class="bi bi-plus-lg"></i>
+                    }>
+                    <i className="bi bi-plus-square"></i>
                   </div>
                 </span>
-              </p>
+              </div>
             </div>
-            <div onClick={() => onProductDelete(product._id, product.quantity)}>
-              <i class="bi bi-trash3"></i>
+            <div className="ml" id="productTotal">
+              ${product.price * product.quantity}
             </div>
           </div>
-          <p className="col-md-3 ml-auto">
-            Total: ${product.price * product.quantity}
-          </p>
+          <div
+            onClick={() => onProductDelete(product._id, product.quantity)}
+            id="trashIcon"
+          >
+            <i className="bi bi-trash3"></i>
+          </div>
         </div>
       ))}
 
-      <p className="col-md-3 ml-auto">Subtotal: ${calculateTotalPrice()}</p>
+      <p className="col-md-3 ml-auto" id="subTotal">
+        Subtotal: ${calculateTotalPrice()}
+      </p>
 
       {user === null ? (
         <div className="display-5 mb-5 text-center">

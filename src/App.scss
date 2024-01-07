@@ -76,3 +76,25 @@
 .hidden{
     display: none;
 }
+
+.whiteButton {
+    background-color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    color: black;
+    border: solid;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+    margin-top: 3vh;
+
+    &:hover {
+      background-color: transparent;
+      color: #fff;
+      border-style: solid;
+      border-color: #fff;
+      text-decoration: none;
+      transition: 0.9s;
+    }
+  }
+  

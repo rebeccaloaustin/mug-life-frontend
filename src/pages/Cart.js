@@ -54,7 +54,7 @@ export default function Cart({
   }
 
   return (
-    <div className="cart container">
+    <div className="cart page container">
       <h2 className="display-5 mb-5 text-center">Shopping Cart</h2>
       <div className="cartHeader">
         <span id="prduct">Product</span>

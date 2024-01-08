@@ -52,7 +52,7 @@ export default function Product(props) {
   }
 
   return (
-    <div className="product-page">
+    <div className="page product-page">
       <Link to="/shop">
         <i className="bi bi-arrow-left"> back to shop</i>
       </Link>

@@ -162,7 +162,7 @@ if (user!== null){
   };
 
   return (
-    <div className="container mt-5">
+    <div className="container page mt-5">
          {showError()}
          {showSuccess()}
       <div className="row justify-content-center">
@@ -204,7 +204,7 @@ if (user!== null){
               </div>
             )}
             {activeTab === "signup" && (
-              <div className="tab-pane fade show active">
+              <div className="tab-pane  fade show active">
                 {/* Sign up form */}
                 <form onSubmit={(e) => submitLogin(e)} className="form-container">
                   <div className="mb-2">

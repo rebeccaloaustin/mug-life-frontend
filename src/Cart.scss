@@ -6,6 +6,7 @@
    border: rgb(219, 218, 218) solid 1px;
    font-family: 'Montserrat', sans-serif;
    animation: fadeIn 2s;
+   
 
   .cartHeader {
     display: flex;
@@ -82,14 +83,13 @@ margin-left: 25vh;
   }
 
   @media (max-width: 768px) {
-    .cartHeader {
-      display:none;
-    }
-  #trashIcon{
-   margin-top: -1.6vh;
-   z-index: 2;
-   margin-left: auto;
-  }
+    .cart .cartHeader {
+        display: none !important;
+       }
+       .cart #trashIcon {
+        margin-top: -4vh;
+        margin-left: 38vh;
+      }
     .row {
       flex-direction: column;
       margin-left: auto;

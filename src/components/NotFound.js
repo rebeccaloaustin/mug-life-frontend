@@ -1,7 +1,7 @@
 // src/components/NotFound.js
 import React from 'react';
 import Footer from './Footer';
-import './NotFound.css'; 
+import './NotFound.scss'; 
 
 const NotFound = () => (
   <div>

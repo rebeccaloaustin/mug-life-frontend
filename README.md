@@ -1,7 +1,7 @@
-# **Mug Life E-Commerce Application**
+# **Mug Life Coffee E-Commerce Application**
 
 **Overview:**
-Welcome to the Mug Life E-Commerce Application! This full-stack web application allows users to immerse themselves in a world of delightful coffee products. The application supports full CRUD operations, enabling admin users to Create, Read, Update, and Delete coffee items. Key features include form validation, shopping cart usage, user authentication (login & sign-up), and admin access for managing the shop.
+Welcome to the Mug Life Coffee E-Commerce Application! This full-stack web application allows users to immerse themselves in a world of delightful coffee products. The application supports full CRUD operations, enabling admin users to Create, Read, Update, and Delete coffee items. Key features include form validation, shopping cart usage, user authentication (login & sign-up), and admin access for managing the shop.
 
 **Technologies & Dependencies Used:**
 **Frontend -**

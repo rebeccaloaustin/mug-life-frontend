@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
-export default function Product() {
+export default function EditProduct({user}) {
   const { id } = useParams();
   const url = process.env.REACT_APP_URL;
   const navigate = useNavigate(); 
@@ -9,9 +9,16 @@ export default function Product() {
     name: "",
     description: "",
     price: "",
+    price_id:"",
+    image:""
   });
 
   useEffect(() => {
+    if (user === null){
+      navigate("/")
+     }else if(user.role ===0){
+      navigate("/")
+     }else{
     const fetchData = async () => {
       try {
         const response = await fetch(`${url}/products/${id}`);
@@ -24,8 +31,8 @@ export default function Product() {
       }
     };
 
-    fetchData();
-  }, [id, url]);
+    fetchData();}
+  }, []);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -46,7 +53,7 @@ export default function Product() {
 
       if (response.ok) {
         console.log("Product updated successfully");
-        navigate("/shop");
+        navigate("/shop/manage");
       } else {
         console.error("Error updating product:", response.statusText);
       }
@@ -56,7 +63,7 @@ export default function Product() {
   };
 
   return (
-    <div className="newproduct container">
+    <div className="newproduct page container">
       <h1>Edit Product</h1>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
@@ -102,19 +109,36 @@ export default function Product() {
             onChange={handleInputChange}
           />
         </div>
+        <div className="mb-3">
+          <label htmlFor="productPrice" className="form-label">
+            Product Price Id
+          </label>
+          <input
+            type="text"
+            className="form-control"
+            id="productPrice"
+            name="price_id"
+            placeholder="Enter product price"
+            value={product.price_id}
+            onChange={handleInputChange}
+          />
+        </div>
 
         <div className="mb-3">
           <label htmlFor="productImage" className="form-label">
-            Choose an image for your product:
+            URL for your image:
           </label>
           <input
-            type="file"
+            type="text"
+            className="form-control"
             id="productImage"
-            name="product.image"
-            accept="image/png, image/jpeg"
+            name="image"
+            placeholder="Enter product image"
+            value={product.image}
+            onChange={handleInputChange}
           />
         </div>
-        <button type="submit" className="btn btn-primary">
+        <button type="submit" className="loginBtn">
           Submit
         </button>
       </form>

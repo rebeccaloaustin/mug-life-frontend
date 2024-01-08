@@ -1,16 +1,23 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../Shop.scss";
 import useFetch from "../useFetch";
 import Loader from "../Loader";
 
-export default function ManageShop() {
+
+export default function ManageShop({user}) {
+  const navigate = useNavigate();
   const [products, setProducts] = useState([]);
   const url = process.env.REACT_APP_URL;
   const { get, loading } = useFetch(url);
 
   useEffect(() => {
-    get("/products")
+    if (user === null){
+      navigate("/")
+     }else if(user.role ===0){
+      navigate("/")
+     }else{
+      get("/products")
       .then((data) => {
         if (data) {
           console.log(data);
@@ -19,8 +26,11 @@ export default function ManageShop() {
       })
       .catch((err) => console.error(err))
       .finally(() => {
-        console.log(products);
+        // console.log(products);
+        // navigate('/shop/manage');
       });
+     }
+
   }, []);
 
   const handleDeleteProduct = async (productId) => {
@@ -40,7 +50,7 @@ export default function ManageShop() {
     }
   };
   return (
-    <div className="shoppage container">
+    <div className="shoppage page container">
       {loading && <Loader />}
       {!loading && products.length > 0 && (
         <div className="row row-cols-1 row-cols-md-3 g-4">
@@ -56,9 +66,9 @@ export default function ManageShop() {
                     <h5 className="card-title">{product.name}</h5>
                     <p className="card-text">{product.description}</p>
                     <Link to={`/product/edit/${product._id}`}>
-                    <button className = "btn btn-primary"> Edit Product</button>
+                    <button className = "loginBtn"> Edit Product</button>
                     </Link>
-                    <button className = "btn btn-danger" onClick={() => handleDeleteProduct(product._id)}> Delete Product</button>
+                    <button className = "button" onClick={() => handleDeleteProduct(product._id)}> Delete Product</button>
                   </div>
                 </div>
             </div>

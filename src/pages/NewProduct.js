@@ -1,16 +1,26 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../NewProduct.scss";
-import axios from "axios";
 
-export default function NewProduct() {
+
+export default function NewProduct(props) {
   const navigate = useNavigate();
   const [productName, setProductName] = useState("");
   const [productDescription, setProductDescription] = useState("");
   const [productPrice, setProductPrice] = useState("");
   const [productPriceID, setProductPriceID] = useState("");
   const [productImage, setProductImage] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
   const url = process.env.REACT_APP_URL;
+
+  const {user} = props
+    
+  const showSuccess = () => (
+    <div className="alert alert-success" style={{ display: successMessage? "" : "none" }}>
+      {successMessage}
+    </div>
+  );
+
   const handleSubmit =(e) => {
     e.preventDefault();
     const fetchURL = `${url}/products`;
@@ -27,14 +37,18 @@ export default function NewProduct() {
       return response.json()
     }).then(data=>{
       console.log(data)
+      setSuccessMessage("Congratulations, new product!")
+      // navigate('/shop');
     })
       .catch((error) => {
         console.error(error);
       });
   };
 
+
   return (
-    <div className="newproduct container">
+    <div className="newproduct page container">
+    {showSuccess()}
       <h1>Add a new product</h1>
       <form
         onSubmit={(e) => {
@@ -73,7 +87,7 @@ export default function NewProduct() {
           </label>
           <input type="text" className="form-control" id="productImage" name="productImage" placeholder="Enter Image URL"  value={productImage} onChange={(e) =>  setProductImage(e.target.value)} />
         </div>
-        <button type="submit" className="btn btn-primary">
+        <button type="submit" className="button">
           Submit
         </button>
       </form>

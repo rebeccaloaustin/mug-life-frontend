@@ -61,7 +61,44 @@
     }
 }
 
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
 
 .warning{
-    border: red 2px solid;
+    color:#721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    position: relative;
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 1rem;
+    margin-top: 0.30rem;
+    border-radius: 0.25rem;
+    border: 1px solid transparent;
 }
+.hidden{
+    display: none;
+}
+
+.whiteButton {
+    background-color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    color: black;
+    border: solid;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+    margin-top: 3vh;
+
+    &:hover {
+      background-color: transparent;
+      color: #fff;
+      border-style: solid;
+      border-color: #fff;
+      text-decoration: none;
+      transition: 0.9s;
+    }
+  }
+  

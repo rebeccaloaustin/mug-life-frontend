@@ -1,5 +1,5 @@
 import React from 'react'
-
+import "../Carousel.scss";
 
 export default function Carousel() {
   return (
@@ -17,7 +17,7 @@ export default function Carousel() {
           <div className="carousel-caption text-left">
             <h1>Sustainable Practices.</h1>
             <p className = "mb-1">Mug Life Coffee is not just about great taste; it's about responsibility.</p>
-            <p><a className="btn btn-lg btn-info" href="#">Sign up today</a></p>
+            <p><a className="btn btn-lg btn-info" href="/about">Learn More</a></p>
           </div>
         </div>
       </div>
@@ -27,7 +27,7 @@ export default function Carousel() {
           <div className="carousel-caption">
             <h1>Craftsmanship in Every Cup.</h1>
             <p className = "mb-1">Our beans are carefully roasted to perfection.</p>
-            <p><a className="btn btn-lg btn-info" href="#">Learn more</a></p>
+            <p><a className="btn btn-lg btn-info" id="shopNow" href="/shop" >Shop now</a></p>
           </div>
         </div>
       </div>
@@ -36,8 +36,8 @@ export default function Carousel() {
         <div className="container">
           <div className="carousel-caption text-right">
             <h1>Community and Connection.</h1>
-            <p className = "mb-1">Some representative placeholder content for the third slide of this carousel.</p>
-            <p><a className="btn btn-lg btn-info" href="#">Browse gallery</a></p>
+            <p className = "mb-1">Join us in celebrating the shared moments and connections that make life richer.</p>
+            <p><a className="btn btn-lg btn-info" href="/login">Sign up today!</a></p>
           </div>
         </div>
       </div>

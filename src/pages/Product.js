@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
-import useFetch from '../useFetch';
+import React, { useState, useEffect } from "react";
+import { useParams, Link } from "react-router-dom";
+import useFetch from "../useFetch";
 import "../Product.scss";
 
 export default function Product(props) {
@@ -10,7 +10,14 @@ export default function Product(props) {
   const { get, loading } = useFetch(url);
   const [product, setProduct] = useState(null);
   const { cart, onProductAdd } = props;
+  const [showAlert, setShowAlert] = useState(false);
+  const [successMessage, setSuccessMessage] = useState("");
 
+  const showSuccess = () => (
+    <div className="alert alert-success" style={{ display: successMessage? "" : "none" }}>
+      {successMessage}
+    </div>
+  );
 
   useEffect(() => {
     get(`/products/${id}`)
@@ -20,11 +27,8 @@ export default function Product(props) {
           console.log(data);
         }
       })
-      .catch((err) => console.error(err))
-
-      ;
+      .catch((err) => console.error(err));
   }, []);
-
 
   const handleQuantityChange = (newQuantity) => {
     // Ensure newQuantity is a valid number and not NaN
@@ -34,8 +38,9 @@ export default function Product(props) {
   };
 
   const handleAddToCart = () => {
-    onProductAdd({...product, quantity} );
+    onProductAdd({ ...product, quantity });
     setQuantity(1); // Reset quantity to 1 after adding to the cart
+    setSuccessMessage("Your item was added to the cart!!")
   };
 
   if (loading) {
@@ -47,24 +52,30 @@ export default function Product(props) {
   }
 
   return (
-    <div className="product-page">
-       <Link to="/shop">
-        <i className="bi bi-arrow-left"> back to shop</i>
+    <div className="page product-page">
+      <Link to="/shop">
+        <i className="bi bi-arrow-left" id="backToShop" style={{color: "black"}}> back to shop</i>
       </Link>
+      <div className='product-details-container'>
       <div className="product-image">
-      <img src={product.image} alt={product.name} />
-      </div> 
-     
-      <div className="product-details"></div>
+        <img src={product.image} alt={product.name} />
+      </div>
+
+      <div className="product-details">
       <h2>{product.name}</h2>
       <p>{product.description}</p>
       <p className="price">Price: ${product.price}</p>
-      <p>Stock: {product.stock}</p>
+      </div>
+      </div>
 
-      <div>
+      <div className="quantity-section">
         <label htmlFor="quantity">Quantity:</label>
         <span>
-          <button onClick={() => handleQuantityChange(Math.max(1, quantity - 1))}>-</button>
+          <button
+            onClick={() => handleQuantityChange(Math.max(1, quantity - 1))}
+          >
+            -
+          </button>
           <input
             type="number"
             id="quantity"
@@ -75,8 +86,12 @@ export default function Product(props) {
           />
           <button onClick={() => handleQuantityChange(quantity + 1)}>+</button>
         </span>
-        <button onClick={handleAddToCart} className="add-to-cart">Add to Cart</button>
-      </div>
+        <button onClick={handleAddToCart} className="add-to-cart">
+          Add to Cart
+        </button>
+         {showSuccess()}
+        
+        </div>
     </div>
   );
 }

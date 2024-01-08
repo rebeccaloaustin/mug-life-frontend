@@ -1,10 +1,82 @@
-#productCartImage{
-    width: 100%;
-      max-width: 400px;
-      margin-bottom: 20px;
-}
-.cart{
-background-color: #E5E5E5;
+.cart {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+   border: rgb(219, 218, 218) solid 1px;
+   font-family: 'Montserrat', sans-serif;
+  }
+  
+  .cartHeader {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    font-family: 'Montserrat', sans-serif;
+  
+    span {
+      flex-basis: calc(33.3333% - 10px);
+      text-align: center;
+    }
+  }
+  #qty{
+    margin-left: 35vh;
+  }
+  #ttl{
+    margin-right: 8vh;
+  }
+  .row {
+    border-bottom: 1px solid #e8e8e8;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+  }
+  
+  #productCartImage {
+    border: 1px solid #ddd; 
+    border-radius: 5px;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    object-position: center;
+    margin-bottom: 20px;
+    
+  }
+  
+  #productCartName {
+    font-weight: bold;
+  }
+  
+  #productCartQuantity {
+    display: flex;
+    align-items: center;
+  
+    div {
+      cursor: pointer;
+      margin: 0 5px;
+    }
+  }
+  
+  #trashIcon{
+   margin-left: auto;
+   margin-top: -25vh;
+   margin-right: 5vh;
+   background-color: transparent;
+   border: none;
+   &:hover{
+    cursor: pointer;
+   }
+  }
+  
+
+  .bi {
+    cursor: pointer;
+    margin-right: 2px;
+  }
+  #productTotal{
+margin-left: 20vh;
+  }
+
 .button {
     background-color: #969f84;
     font-family: 'Montserrat', sans-serif;
@@ -14,6 +86,7 @@ background-color: #E5E5E5;
     cursor: pointer;
     font-size: 16px;
     transition: background-color 0.3s;
+    margin-top: 3vh;
 
     &:hover {
       background-color: #fff;
@@ -22,5 +95,38 @@ background-color: #E5E5E5;
       border-color: #969f84;
     }
   }
-}
 
+  @media (max-width: 768px) {
+    .cartHeader {
+      display:none;
+    }
+  #trashIcon{
+   margin-top: -1.6vh;
+   margin-left: auto;
+  }
+    .row {
+      flex-direction: column;
+      margin-left: auto;
+      margin-right: auto;
+  
+      #productCartImage {
+        margin-bottom: 20px;    
+        margin-left: auto;
+        margin-right: auto;
+        max-height: 40vh;
+      }
+  
+      .col-md-8 {
+        text-align: center;
+      }
+  
+      .col-md-3 {
+        margin-top: 15px;
+      }
+      #productTotal{
+        margin-left:auto;
+        margin-right: 9vh;
+          }
+    }
+  }
+  

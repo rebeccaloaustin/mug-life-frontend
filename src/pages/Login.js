@@ -197,7 +197,7 @@ if (user!== null){
                     <input type="password" value={passwordLogin} onChange={handleChange("passwordLogin")} className="form-control" id="loginPassword" />
                   </div>
              
-                  <button type="submit" className="btn btn-primary">
+                  <button type="submit" className="loginBtn">
                     Login
                   </button>
                 </form>
@@ -234,7 +234,7 @@ if (user!== null){
                       Please enter a valid Password
                     </div>
                   </div>
-                  <button type="submit" className="btn btn-primary">
+                  <button type="submit" className="loginBtn">
                     Sign Up
                   </button>
                 </form>

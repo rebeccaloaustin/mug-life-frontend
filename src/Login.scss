@@ -3,3 +3,20 @@
     flex-direction: column;
     gap: 10px;
 }
+.loginBtn {
+    background-color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    color: #1c1b1b;
+    border: solid;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: #1c1b1bf1;
+      color: #fff;
+      border-style: solid;
+      border-color: #fff;
+    }
+  }

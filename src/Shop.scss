@@ -1,3 +1,13 @@
 .shoppage{
     font-family: 'Montserrat', sans-serif;
+    margin-top: 15vh;
+}
+
+@media (max-width: 768px){
+    .shoppage{
+        margin-top: 5vh;}
+        .card{
+            margin-bottom: 5vh;
+
+        }
 }

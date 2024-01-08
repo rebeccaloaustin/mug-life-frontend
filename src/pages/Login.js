@@ -169,12 +169,12 @@ if (user!== null){
         <div className="col-md-6">
           <ul className="nav nav-tabs">
             <li className="nav-item">
-              <a className={`nav-link ${activeTab === "login" ? "active" : ""}`} onClick={() => switchTab("login")} href="#">
+              <a className={`nav-link ${activeTab === "login" ? "active" : ""}`} onClick={() => switchTab("login")} href="#"style={{ color: '#1c1b1b'}}>
                 Login
               </a>
             </li>
-            <li className="nav-item">
-              <a className={`nav-link ${activeTab === "signup" ? "active" : ""}`} onClick={() => switchTab("signup")} href="#">
+            <li className="nav-item" >
+              <a className={`nav-link ${activeTab === "signup" ? "active" : ""}`} onClick={() => switchTab("signup")} href="#" style={{ color: '#1c1b1b'}}>
                 Sign Up
               </a>
             </li>

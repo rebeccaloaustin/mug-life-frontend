@@ -66,9 +66,9 @@ export default function ManageShop({user}) {
                     <h5 className="card-title">{product.name}</h5>
                     <p className="card-text">{product.description}</p>
                     <Link to={`/product/edit/${product._id}`}>
-                    <button className = "btn btn-primary"> Edit Product</button>
+                    <button className = "loginBtn"> Edit Product</button>
                     </Link>
-                    <button className = "btn btn-danger" onClick={() => handleDeleteProduct(product._id)}> Delete Product</button>
+                    <button className = "button" onClick={() => handleDeleteProduct(product._id)}> Delete Product</button>
                   </div>
                 </div>
             </div>

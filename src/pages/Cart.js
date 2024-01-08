@@ -71,7 +71,7 @@ export default function Cart({
               alt={product.name}
             />
           </div>
-          <div className="col-md-8 d-flex align-items-center">
+          <div className="col-md-7 d-flex align-items-center" id="shoppingDiv">
             <p className="col-md-4" id="productCartName">
               {product.name}
             </p>
@@ -101,9 +101,8 @@ export default function Cart({
             </div>
           </div>
           <div
-            onClick={() => onProductDelete(product._id, product.quantity)}
-            id="trashIcon">
-            <i className="bi bi-trash3"></i>
+            onClick={() => onProductDelete(product._id, product.quantity)}>
+            <i className="bi bi-trash3" id="trashIcon"></i>
           </div>
         </div>
       ))}

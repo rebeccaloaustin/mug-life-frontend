@@ -78,6 +78,7 @@ function App() {
 
 
   function handleProductDelete(id, quantityToRemove) {
+    console.log("clicked me!")
     const updatedCart = cart.map((product) => {
       if (product._id === id) {
         const remainingQuantity = Math.max(0, product.quantity - quantityToRemove);

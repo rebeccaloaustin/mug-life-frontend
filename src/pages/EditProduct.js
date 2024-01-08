@@ -138,7 +138,7 @@ export default function EditProduct({user}) {
             onChange={handleInputChange}
           />
         </div>
-        <button type="submit" className="btn btn-primary">
+        <button type="submit" className="loginBtn">
           Submit
         </button>
       </form>

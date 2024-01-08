@@ -87,7 +87,7 @@ export default function NewProduct(props) {
           </label>
           <input type="text" className="form-control" id="productImage" name="productImage" placeholder="Enter Image URL"  value={productImage} onChange={(e) =>  setProductImage(e.target.value)} />
         </div>
-        <button type="submit" className="btn btn-primary">
+        <button type="submit" className="button">
           Submit
         </button>
       </form>

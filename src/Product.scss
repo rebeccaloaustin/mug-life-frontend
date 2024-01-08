@@ -12,7 +12,12 @@
       color: #969f84;
       text-decoration: none;
       display: flex;
+      font-style: normal;
+    }
       
+     
+    a:hover{
+      text-decoration: none;
     }
     #backToShop:hover {
         color:#969f84 !important;

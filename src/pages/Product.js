@@ -53,9 +53,11 @@ export default function Product(props) {
 
   return (
     <div className="page product-page">
+    {showSuccess()}
       <Link to="/shop">
-        <i className="bi bi-arrow-left" id="backToShop" style={{color: "black"}}> back to shop</i>
+        <i className="bi bi-arrow-left"> back to shop</i>
       </Link>
+  
       <div className='product-details-container'>
       <div className="product-image">
         <img src={product.image} alt={product.name} />
@@ -89,7 +91,7 @@ export default function Product(props) {
         <button onClick={handleAddToCart} className="add-to-cart">
           Add to Cart
         </button>
-         {showSuccess()}
+  
         
         </div>
     </div>

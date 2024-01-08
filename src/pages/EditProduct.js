@@ -63,7 +63,7 @@ export default function EditProduct({user}) {
   };
 
   return (
-    <div className="newproduct container">
+    <div className="newproduct page container">
       <h1>Edit Product</h1>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">

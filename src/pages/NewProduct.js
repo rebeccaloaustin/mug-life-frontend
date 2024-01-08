@@ -44,10 +44,10 @@ export default function NewProduct(props) {
         console.error(error);
       });
   };
-  
+
 
   return (
-    <div className="newproduct container">
+    <div className="newproduct page container">
     {showSuccess()}
       <h1>Add a new product</h1>
       <form

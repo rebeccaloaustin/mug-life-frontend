@@ -50,7 +50,7 @@ export default function ManageShop({user}) {
     }
   };
   return (
-    <div className="shoppage container">
+    <div className="shoppage page container">
       {loading && <Loader />}
       {!loading && products.length > 0 && (
         <div className="row row-cols-1 row-cols-md-3 g-4">

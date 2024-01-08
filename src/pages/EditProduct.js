@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
-export default function Product() {
+export default function EditProduct({user}) {
   const { id } = useParams();
   const url = process.env.REACT_APP_URL;
   const navigate = useNavigate(); 
@@ -9,9 +9,16 @@ export default function Product() {
     name: "",
     description: "",
     price: "",
+    price_id:"",
+    image:""
   });
 
   useEffect(() => {
+    if (user === null){
+      navigate("/")
+     }else if(user.role ===0){
+      navigate("/")
+     }else{
     const fetchData = async () => {
       try {
         const response = await fetch(`${url}/products/${id}`);
@@ -24,8 +31,8 @@ export default function Product() {
       }
     };
 
-    fetchData();
-  }, [id, url]);
+    fetchData();}
+  }, []);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -99,6 +106,20 @@ export default function Product() {
             name="price"
             placeholder="Enter product price"
             value={product.price}
+            onChange={handleInputChange}
+          />
+        </div>
+        <div className="mb-3">
+          <label htmlFor="productPrice" className="form-label">
+            Product Price Id
+          </label>
+          <input
+            type="text"
+            className="form-control"
+            id="productPrice"
+            name="price_id"
+            placeholder="Enter product price"
+            value={product.price_id}
             onChange={handleInputChange}
           />
         </div>

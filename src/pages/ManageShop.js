@@ -5,14 +5,19 @@ import useFetch from "../useFetch";
 import Loader from "../Loader";
 
 
-export default function ManageShop() {
+export default function ManageShop({user}) {
   const navigate = useNavigate();
   const [products, setProducts] = useState([]);
   const url = process.env.REACT_APP_URL;
   const { get, loading } = useFetch(url);
 
   useEffect(() => {
-    get("/products")
+    if (user === null){
+      navigate("/")
+     }else if(user.role ===0){
+      navigate("/")
+     }else{
+      get("/products")
       .then((data) => {
         if (data) {
           console.log(data);
@@ -21,9 +26,11 @@ export default function ManageShop() {
       })
       .catch((err) => console.error(err))
       .finally(() => {
-        console.log(products);
-        navigate('/shop/manage');
+        // console.log(products);
+        // navigate('/shop/manage');
       });
+     }
+
   }, []);
 
   const handleDeleteProduct = async (productId) => {

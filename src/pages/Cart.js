@@ -31,6 +31,7 @@ export default function Cart({
     const lineItems = cart.map((product) => {
       return { price: product.price_id, quantity: product.quantity };
     });
+    console.log(lineItems)
 
     stripeLoadedPromise.then((stripe) => {
       stripe

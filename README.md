@@ -1,70 +1,34 @@
-# Getting Started with Create React App
+# **Mug Life E-Commerce Application**
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+**Overview:**
+Welcome to the Mug Life E-Commerce Application! This full-stack web application allows users to immerse themselves in a world of delightful coffee products. The application supports full CRUD operations, enabling admin users to Create, Read, Update, and Delete coffee items. Key features include form validation, shopping cart usage, user authentication (login & sign-up), and admin access for managing the shop.
 
-## Available Scripts
+**Technologies & Dependencies Used:**
+**Frontend -**
+React, React Router DOM, Bootstrap, Stripe for payment processing
+**Backend -**
+Node.js with Express, MongoDB as the database, Mongoose for MongoDB object modeling, Bcrypt and Bcryptjs for password hashing, JSON Web Token for user authentication, Cors for handling Cross-Origin Resource Sharing, Body-parser for parsing incoming request bodies, Formidable for handling form data, and Validator for data validation. 
 
-In the project directory, you can run:
+**Getting Started:**
+Ready to join the Mug Life? Getting started is easy -
+Simply visit our live site at https://muglife.onrender.com/. Discover an eclectic blend of coffee delights and curate your own brew journey. No installation required – Sip, click, and savor the brew-tiful experience of our app.
 
-### `npm start`
+**Features:**
+- **User Authentication** - Users can sign up and log in securely.
+- **Product Management** - Admins have access to manage the Mug Life shop, including adding, updating, and deleting shop items.
+- **Form Validation** - Ensures data integrity through form validation on both the frontend and backend.
+- **Stripe Integration** - Securely process payments using the Stripe API.
+- **404 Page** - Custom 404 page for users attempting to access unauthorized or non-existing pages.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+**Acknowledgments:** 
+Icons from fontawesome. Photo sources from unsplash. Mug Life does not own any of the photos used in the application. 
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+**Project Team:**
+We would like to express our gratitude to each member of the project team for their unique skills, hard work, and commitment. Your contributions have played a vital role in shaping the project and achieving our goals.
 
-### `npm test`
+- **Gamaliel Burgos** - Scrum manager/project manager.
+- **Rebecca Austin** - Lead Front End Developer.
+- **Johnny Lopez** - Lead Back End Developer. 
+- **Johnathan Reven** - Release Manager.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

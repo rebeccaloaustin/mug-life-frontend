@@ -38,8 +38,8 @@ export default function Cart({
         .redirectToCheckout({
           lineItems: lineItems,
           mode: "payment",
-          successUrl: "http://localhost:3000/",
-          cancelUrl: "http://localhost:3000/",
+          successUrl: "https://muglife.onrender.com/",
+          cancelUrl: "https://muglife.onrender.com/",
           customerEmail: user.email ? user.email : "",
         })
         .then((response) => {

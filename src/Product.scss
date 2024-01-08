@@ -7,22 +7,22 @@
     justify-content: center;
     animation: fadeIn 2s;
 
-    .back-to-shop {
-
+    #backToShop {
       margin-bottom: 20px;
-      font-size: 14px;
       color: #969f84;
       text-decoration: none;
       display: flex;
-
-      i {
-        margin-right: 2px;
-      }
-  
-      &:hover {
-        color:black
-      }
+      font-style: normal;
     }
+      
+     
+    a:hover{
+      text-decoration: none;
+    }
+    #backToShop:hover {
+        color:#969f84 !important;
+        text-decoration: none;
+      }
     .product-details-container{
       display: flex;  
       align-items: flex-start;

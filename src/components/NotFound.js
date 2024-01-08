@@ -6,9 +6,8 @@ import './NotFound.css';
 const NotFound = () => (
   <div>
     <div className="not-found-container">
-      <h1>Sorry but this page no longer exits </h1>
+      <h1>Sorry but this page does not exist</h1>
     </div>
-    <Footer />
   </div>
 );
 

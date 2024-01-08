@@ -88,7 +88,8 @@ export default function Cart({
                   <div
                     onClick={() =>
                       onQuantityChange(product._id, product.quantity + 1)
-                    }>
+                    }
+                  >
                     <i className="bi bi-plus-square"></i>
                   </div>
                 </span>
@@ -100,8 +101,7 @@ export default function Cart({
           </div>
           <div
             onClick={() => onProductDelete(product._id, product.quantity)}
-            id="trashIcon"
-          >
+            id="trashIcon">
             <i className="bi bi-trash3"></i>
           </div>
         </div>

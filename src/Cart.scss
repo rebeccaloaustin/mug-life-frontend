@@ -5,8 +5,7 @@
     background-color: #fff;
    border: rgb(219, 218, 218) solid 1px;
    font-family: 'Montserrat', sans-serif;
-  }
-  
+   animation: fadeIn 2s;
   .cartHeader {
     display: flex;
     justify-content: space-between;
@@ -22,10 +21,10 @@
     }
   }
   #qty{
-    margin-left: 35vh;
+    margin-left: 43vh;
   }
   #ttl{
-    margin-right: 8vh;
+    margin-right: 12vh;
   }
   .row {
     border-bottom: 1px solid #e8e8e8;
@@ -42,7 +41,9 @@
     margin-bottom: 20px;
     
   }
-  
+  #userCheckout{
+    text-align: center;
+  }
   #productCartName {
     font-weight: bold;
   }
@@ -50,6 +51,7 @@
   #productCartQuantity {
     display: flex;
     align-items: center;
+    margin-left: 6vh;
   
     div {
       cursor: pointer;
@@ -58,42 +60,24 @@
   }
   
   #trashIcon{
-   margin-left: auto;
-   margin-top: -25vh;
-   margin-right: 5vh;
    background-color: transparent;
+   position: absolute;
+   margin-top: 23vh;
    border: none;
    &:hover{
     cursor: pointer;
    }
   }
-  
 
   .bi {
     cursor: pointer;
     margin-right: 2px;
   }
   #productTotal{
-margin-left: 20vh;
+margin-left: 25vh;
   }
 
-.button {
-    background-color: #969f84;
-    font-family: 'Montserrat', sans-serif;
-    color: #E5E5E5;
-    border: solid;
-    padding: 10px 15px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s;
-    margin-top: 3vh;
 
-    &:hover {
-      background-color: #fff;
-      color: #969f84;
-      border-style: solid;
-      border-color: #969f84;
-    }
   }
 
   @media (max-width: 768px) {
@@ -102,6 +86,7 @@ margin-left: 20vh;
     }
   #trashIcon{
    margin-top: -1.6vh;
+   z-index: 2;
    margin-left: auto;
   }
     .row {
@@ -129,4 +114,22 @@ margin-left: 20vh;
           }
     }
   }
+ 
+  .button {
+    background-color: #969f84;
+    font-family: 'Montserrat', sans-serif;
+    color: #E5E5E5;
+    border: solid #969f84;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+    margin-top: 3vh;
+
+    &:hover {
+      background-color: #fff;
+      color: #969f84;
+      border-style: solid;
+      border-color: #969f84;
+    } }
   

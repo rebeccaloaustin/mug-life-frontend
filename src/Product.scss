@@ -5,8 +5,8 @@
     background-color: #f9f7f7;
     font-family: 'Montserrat', sans-serif;
     justify-content: center;
-}
-    .back-to-shop {
+    animation: fadeIn 2s;
+.back-to-shop {
       margin-bottom: 20px;
       font-size: 14px;
       color: #969f84;
@@ -70,4 +70,5 @@
         border-color: #969f84;
       }
     }
-  
+  }
+    

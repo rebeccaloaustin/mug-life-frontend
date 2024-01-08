@@ -20,6 +20,13 @@ Simply visit our live site at https://muglife.onrender.com/. Discover an eclecti
 - **Stripe Integration** - Securely process payments using the Stripe API.
 - **404 Page** - Custom 404 page for users attempting to access unauthorized or non-existing pages.
 
+**Screenshots:**
+<img width="1497" alt="Screenshot 2024-01-08 at 6 27 37 PM" src="https://github.com/rebeccaloaustin/mug-life-frontend/assets/141693053/3463020c-5c62-40ff-b79e-335da756dbea">
+<img width="1495" alt="Screenshot 2024-01-08 at 6 30 23 PM" src="https://github.com/rebeccaloaustin/mug-life-frontend/assets/141693053/b0dac516-a402-47c7-9008-448cf00e12f4">
+<img width="1482" alt="Screenshot 2024-01-08 at 6 27 29 PM" src="https://github.com/rebeccaloaustin/mug-life-frontend/assets/141693053/f369422f-fc0d-450e-87ea-71db7eb6a029">
+<img <img width="1494" alt="Screenshot 2024-01-08 at 6 28 31 PM" src="https://github.com/rebeccaloaustin/mug-life-frontend/assets/141693053/64a86113-db86-4fa1-b54b-a3e706455fba">
+
+
 **Acknowledgments:** 
 Icons from fontawesome. Photo sources from unsplash. Mug Life does not own any of the photos used in the application. 
 
